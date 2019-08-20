@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
 
 COPY ./requirements /requirements
 
-RUN pip install --upgrade pip && pip install -r /requirements/${REQUIREMENTS_FILENAME}
+RUN pip install --upgrade pip && pip install -r /requirements/${REQUIREMENTS_FILENAME}.txt
 
 WORKDIR /code
 COPY ./src/ /code/

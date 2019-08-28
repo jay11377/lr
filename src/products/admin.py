@@ -1,12 +1,25 @@
 from django.contrib import admin
+from django.contrib.admin import ModelAdmin
 from .models import Category, Product
 
+
 # Register your models here.
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    pass
+class InlineProduct(admin.TabularInline):
+    model = Product
+    extra = 1
 
 
-@admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
-    pass
+class CategoryAdmin(ModelAdmin):
+    inlines = [InlineProduct]
+
+
+admin.site.register(Category, CategoryAdmin)
+
+
+class ProductAdmin(ModelAdmin):
+    list_display = ('title', 'category')
+    list_filter = ('category',)
+    search_fields = ('title',)
+
+
+admin.site.register(Product, ProductAdmin)

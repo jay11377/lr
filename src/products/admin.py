@@ -10,7 +10,7 @@ class InlineProduct(admin.TabularInline):
 
 
 class StoreAdmin(ModelAdmin):
-    list_display = ('title',)
+    list_display = ('title', 'owner')
     search_fields = ('title',)
 
 
@@ -18,6 +18,8 @@ admin.site.register(Store, StoreAdmin)
 
 
 class CategoryAdmin(ModelAdmin):
+    list_display = ('title', 'author')
+    list_filter = ('author',)
     inlines = [InlineProduct]
 
 

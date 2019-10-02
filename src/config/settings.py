@@ -108,7 +108,6 @@ REST_FRAMEWORK = {
 # CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ORIGIN_WHITELIST = [
-    "https://polls-static.s3.amazonaws.com",
     "https://polls-merix.herokuapp.com"
 ]
 

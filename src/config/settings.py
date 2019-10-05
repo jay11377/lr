@@ -105,8 +105,11 @@ REST_FRAMEWORK = {
 }
 
 
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
 
+CORS_ORIGIN_WHITELIST = [
+    "https://polls-merix.herokuapp.com"
+]
 
 AUTH_PASSWORD_VALIDATORS = [
     {

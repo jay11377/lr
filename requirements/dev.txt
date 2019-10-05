@@ -1,5 +1,5 @@
 -r base.txt
 
 ipython==7.4.0
-Werkzeug==0.15.2
+Werkzeug>=0.15.3
 django-extensions==2.1.6

@@ -106,7 +106,8 @@ REST_FRAMEWORK = {
 
 
 CORS_ORIGIN_WHITELIST = [
-    "https://polls-merix.herokuapp.com"
+    "https://lr-uat.herokuapp.com",
+    "https://lr-prd.herokuapp.com"
 ]
 
 

@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 DATABASES = {
-    'default': env.db(default='postgres://postgres:postgres@db:5432/postgres',)
+    'default': env.db(default='postgres://lr:lr@db:5432/postgres',)
 }
 
 
@@ -106,8 +106,8 @@ REST_FRAMEWORK = {
 
 
 CORS_ORIGIN_WHITELIST = [
-    ".herokuapp.com"
-    "https://lr-prd.herokuapp.com"
+    "https://lr-prd.herokuapp.com",
+    "https://lr-uat.herokuapp.com"
 ]
 
 

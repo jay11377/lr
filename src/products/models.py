@@ -51,6 +51,7 @@ class Product(models.Model):
     price = models.DecimalField(default=0, max_digits=5, decimal_places=2)
     photo = models.ImageField(null=True, upload_to='products')
     spicy = models.BooleanField(default=False)
+    vegetarian = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = _('plat')

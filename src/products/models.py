@@ -44,7 +44,7 @@ class Product(models.Model):
     category = models.ForeignKey(
         Category,
         on_delete=models.CASCADE,
-        related_name='plats',
+        related_name='dish',
         verbose_name=_('category'),
     )
     title = models.CharField(max_length=200)
@@ -55,8 +55,8 @@ class Product(models.Model):
     vegetarian = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name = _('plat')
-        verbose_name_plural = _('plats')
+        verbose_name = _('dish')
+        verbose_name_plural = _('dishes')
 
     def __str__(self):
         return self.title

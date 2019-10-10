@@ -35,13 +35,18 @@ admin.site.register(Store, StoreAdmin)
 
 class CategoryAdmin(FilterUserAdmin):
     list_display = ('title', 'author')
-    list_filter = ('author',)
     inlines = [InlineProduct]
 
     def changelist_view(self, request, extra_context=None):
         if not request.user.is_superuser:
             self.list_display = ('title',)
         return super(CategoryAdmin, self).changelist_view(request, extra_context)
+
+    def get_list_filter(self, request):
+        if request.user.is_superuser:
+            return ['author']
+        else:
+            return []
 
 
 admin.site.register(Category, CategoryAdmin)

@@ -31,6 +31,7 @@ class Category(models.Model):
         default=1,
         on_delete=models.CASCADE,
         verbose_name=_('author'),
+        editable=False,
     )
 
     class Meta:

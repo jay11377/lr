@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-10 07:04+0000\n"
+"POT-Creation-Date: 2019-10-10 07:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,6 +54,14 @@ msgstr ""
 msgid "products"
 msgstr "carte"
 
+#: products/models.py:10 products/models.py:28 products/models.py:51
+msgid "title"
+msgstr "titre"
+
+#: products/models.py:11
+msgid "domain"
+msgstr "domaine"
+
 #: products/models.py:16
 msgid "owner"
 msgstr "gérant"
@@ -66,18 +74,42 @@ msgstr "restaurant"
 msgid "stores"
 msgstr "restaurants"
 
-#: products/models.py:36 products/models.py:48
+#: products/models.py:33
+msgid "author"
+msgstr "auteur"
+
+#: products/models.py:37 products/models.py:49
 msgid "category"
 msgstr "catégorie"
 
-#: products/models.py:37
+#: products/models.py:38
 msgid "categories"
 msgstr "catégories"
 
-#: products/models.py:58
+#: products/models.py:52
+msgid "description"
+msgstr "description"
+
+#: products/models.py:53
+msgid "price"
+msgstr "prix"
+
+#: products/models.py:54
+msgid "photo"
+msgstr "photo"
+
+#: products/models.py:55
+msgid "spicy"
+msgstr "épicé"
+
+#: products/models.py:56
+msgid "vegetarian"
+msgstr "végétarien"
+
+#: products/models.py:59
 msgid "dish"
 msgstr "plat"
 
-#: products/models.py:59
+#: products/models.py:60
 msgid "dishes"
 msgstr "plats"

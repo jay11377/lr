@@ -7,8 +7,8 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class Store(models.Model):
-    title = models.CharField(max_length=200)
-    domain = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, verbose_name=_('title'))
+    domain = models.CharField(max_length=200, verbose_name=_('domain'))
     owner = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -25,11 +25,12 @@ class Store(models.Model):
 
 
 class Category(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, verbose_name=_('title'))
     author = models.ForeignKey(
         get_user_model(),
         default=1,
         on_delete=models.CASCADE,
+        verbose_name=_('author'),
     )
 
     class Meta:
@@ -47,12 +48,12 @@ class Product(models.Model):
         related_name='dish',
         verbose_name=_('category'),
     )
-    title = models.CharField(max_length=200)
-    description = models.TextField(blank=True)
-    price = models.DecimalField(default=0, max_digits=5, decimal_places=2)
-    photo = models.ImageField(null=True, upload_to='products')
-    spicy = models.BooleanField(default=False)
-    vegetarian = models.BooleanField(default=False)
+    title = models.CharField(max_length=200, verbose_name=_('title'))
+    description = models.TextField(blank=True, verbose_name=_('description'))
+    price = models.DecimalField(default=0, max_digits=5, decimal_places=2, verbose_name=_('price'))
+    photo = models.ImageField(null=True, upload_to='products', verbose_name=_('photo'))
+    spicy = models.BooleanField(default=False, verbose_name=_('spicy'))
+    vegetarian = models.BooleanField(default=False, verbose_name=_('vegetarian'))
 
     class Meta:
         verbose_name = _('dish')

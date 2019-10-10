@@ -12,7 +12,11 @@ class FilterUserAdmin(ModelAdmin):
     # Filter view with author = current user
     def get_queryset(self, request):
         qs = super(FilterUserAdmin, self).get_queryset(request)
-        return qs.filter(author=request.user)
+        if not request.user.is_superuser:
+            return qs.filter(author=request.user)
+        else:
+            return qs
+
 
 
 # Register your models here.

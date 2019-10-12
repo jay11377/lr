@@ -33,6 +33,14 @@ class Category(models.Model):
         verbose_name=_('author'),
         editable=False,
     )
+    store = models.ForeignKey(
+        Store,
+        default=1,
+        on_delete=models.CASCADE,
+        related_name=_('store'),
+        verbose_name=_('store'),
+    )
+
 
     class Meta:
         verbose_name = _('category')

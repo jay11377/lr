@@ -57,6 +57,13 @@ class Product(models.Model):
         related_name='dish',
         verbose_name=_('category'),
     )
+    author = models.ForeignKey(
+        get_user_model(),
+        default=1,
+        on_delete=models.CASCADE,
+        verbose_name=_('author'),
+        editable=False,
+    )
     title = models.CharField(max_length=200, verbose_name=_('title'))
     description = models.TextField(blank=True, verbose_name=_('description'))
     price = models.DecimalField(default=0, max_digits=5, decimal_places=2, verbose_name=_('price'))

@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
 from .models import Category, Product, Store
+from django.utils.html import format_html
+from django.utils.translation import ugettext_lazy as _
 
 
 def get_user_store(user):
@@ -98,17 +100,22 @@ class ProductAdmin(FilterUserProductsAdmin):
     search_fields = ('title',)
 
     def changelist_view(self, request, extra_context=None):
-        if not request.user.is_superuser:
-            self.list_display = ('title', 'category')
+        if request.user.is_superuser:
+            self.list_display = ('title', 'category', 'get_categories', 'author')
         else:
-            self.list_display = ('title', 'category', 'author')
+            self.list_display = ('title', 'category', 'get_categories')
         return super(ProductAdmin, self).changelist_view(request, extra_context)
 
     def get_list_filter(self, request):
         if request.user.is_superuser:
-            return ['category']
+            return ['categories']
         else:
-            return ['category']
+            return ['categories']
+
+    def get_categories(self, request):
+        categories_html = "".join([format_html('{}</br>', c.title) for c in request.categories.all()])
+        return format_html(categories_html)
+    get_categories.short_description = _('categories')
 
 
 admin.site.register(Product, ProductAdmin)

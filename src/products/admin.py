@@ -50,7 +50,7 @@ class FilterUserProductsAdmin(ModelAdmin):
     def get_queryset(self, request):
         qs = super(FilterUserProductsAdmin, self).get_queryset(request)
         if not request.user.is_superuser:
-            return qs.filter(category__in=get_store_categories_ids(request.user))
+            return qs.filter(categories__in=get_store_categories_ids(request.user))
         else:
             return qs
 

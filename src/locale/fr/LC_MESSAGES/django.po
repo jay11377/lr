@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-10 07:14+0000\n"
+"POT-Creation-Date: 2019-10-16 16:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,7 +54,7 @@ msgstr ""
 msgid "products"
 msgstr "carte"
 
-#: products/models.py:10 products/models.py:28 products/models.py:51
+#: products/models.py:10 products/models.py:28 products/models.py:71
 msgid "title"
 msgstr "titre"
 
@@ -66,7 +66,7 @@ msgstr "domaine"
 msgid "owner"
 msgstr "gérant"
 
-#: products/models.py:20
+#: products/models.py:20 products/models.py:40 products/models.py:41
 msgid "store"
 msgstr "restaurant"
 
@@ -74,42 +74,42 @@ msgstr "restaurant"
 msgid "stores"
 msgstr "restaurants"
 
-#: products/models.py:33
+#: products/models.py:33 products/models.py:68
 msgid "author"
 msgstr "auteur"
 
-#: products/models.py:37 products/models.py:49
+#: products/models.py:46 products/models.py:58
 msgid "category"
 msgstr "catégorie"
 
-#: products/models.py:38
+#: products/models.py:47 products/models.py:62
 msgid "categories"
 msgstr "catégories"
 
-#: products/models.py:52
+#: products/models.py:72
 msgid "description"
 msgstr "description"
 
-#: products/models.py:53
+#: products/models.py:73
 msgid "price"
 msgstr "prix"
 
-#: products/models.py:54
+#: products/models.py:74
 msgid "photo"
 msgstr "photo"
 
-#: products/models.py:55
+#: products/models.py:75
 msgid "spicy"
 msgstr "épicé"
 
-#: products/models.py:56
+#: products/models.py:76
 msgid "vegetarian"
 msgstr "végétarien"
 
-#: products/models.py:59
+#: products/models.py:79
 msgid "dish"
 msgstr "plat"
 
-#: products/models.py:60
+#: products/models.py:80
 msgid "dishes"
 msgstr "plats"

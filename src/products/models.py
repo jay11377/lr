@@ -57,6 +57,10 @@ class Product(models.Model):
         related_name='dish',
         verbose_name=_('category'),
     )
+    categories = models.ManyToManyField(
+        Category,
+        verbose_name=_('categories'),
+    )
     author = models.ForeignKey(
         get_user_model(),
         default=1,

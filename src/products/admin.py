@@ -127,6 +127,12 @@ class ProductAdmin(FilterUserProductsAdmin):
         self.list_display_links = ('title',)
         return super(ProductAdmin, self).changelist_view(request, extra_context)
 
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == 'categories':
+            if not request.user.is_superuser:
+                kwargs["queryset"] = Category.objects.filter(store=get_user_store(request.user))
+        return super(ProductAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
+
     def get_list_filter(self, request):
         if request.user.is_superuser:
             return [CategoriesListFilters]

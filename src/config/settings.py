@@ -151,3 +151,4 @@ STATIC_ROOT = (root - 1)('static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = (root - 1)('media')
+THUMB_SIZE = (120, 80)

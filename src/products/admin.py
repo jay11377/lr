@@ -95,22 +95,40 @@ class CategoryAdmin(FilterUserAdmin):
 admin.site.register(Category, CategoryAdmin)
 
 
+class CategoriesListFilters(admin.SimpleListFilter):
+    title = _('category')
+    parameter_name = 'categories__id__exact'
+    default_value = None
+
+    def lookups(self, request, model_admin):
+        categories_list = []
+        queryset = Category.objects.filter(store=get_user_store(request.user))
+        for category in queryset:
+            categories_list.append((str(category.id), category.title))
+        return sorted(categories_list, key=lambda tp: tp[1])
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(categories__id__exact=self.value())
+        return queryset
+
+
 class ProductAdmin(FilterUserProductsAdmin):
-    list_filter = ('category',)
     search_fields = ('title',)
 
     def changelist_view(self, request, extra_context=None):
         if request.user.is_superuser:
-            self.list_display = ('title', 'category', 'get_categories', 'author')
+            self.list_display = ('thumbnail_tag', 'title', 'category', 'get_categories', 'author')
         else:
-            self.list_display = ('title', 'category', 'get_categories')
+            self.list_display = ('thumbnail_tag', 'title', 'category', 'get_categories')
+        self.list_display_links = ('title',)
         return super(ProductAdmin, self).changelist_view(request, extra_context)
 
     def get_list_filter(self, request):
         if request.user.is_superuser:
-            return ['categories']
+            return ['categories', CategoriesListFilters]
         else:
-            return ['categories']
+            return [CategoriesListFilters]
 
     def get_categories(self, request):
         categories_html = "".join([format_html('{}</br>', c.title) for c in request.categories.all()])

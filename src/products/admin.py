@@ -102,7 +102,10 @@ class CategoriesListFilters(admin.SimpleListFilter):
 
     def lookups(self, request, model_admin):
         categories_list = []
-        queryset = Category.objects.filter(store=get_user_store(request.user))
+        if request.user.is_superuser:
+            queryset = Category.objects.all()
+        else:
+            queryset = Category.objects.filter(store=get_user_store(request.user))
         for category in queryset:
             categories_list.append((str(category.id), category.title))
         return sorted(categories_list, key=lambda tp: tp[1])
@@ -126,7 +129,7 @@ class ProductAdmin(FilterUserProductsAdmin):
 
     def get_list_filter(self, request):
         if request.user.is_superuser:
-            return ['categories', CategoriesListFilters]
+            return [CategoriesListFilters]
         else:
             return [CategoriesListFilters]
 

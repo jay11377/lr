@@ -3,6 +3,8 @@ from django.contrib.admin import ModelAdmin
 from .models import Category, Product, Store
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
+from django.db import models
+from django.forms import SelectMultiple
 
 
 def get_user_store(user):
@@ -41,6 +43,9 @@ class FilterUserAdmin(ModelAdmin):
 
 # Flter for products
 class FilterUserProductsAdmin(ModelAdmin):
+    # force CSS for multiple select fields
+    formfield_overrides = {models.ManyToManyField: {'widget': SelectMultiple(attrs={'style': 'width:200px; height:80px'})}, }
+
     # Force current user as author
     def save_model(self, request, obj, form, change):
         obj.author = request.user

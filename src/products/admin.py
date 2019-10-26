@@ -72,10 +72,10 @@ admin.site.register(Store, StoreAdmin)
 class CategoryAdmin(FilterUserAdmin):
 
     def changelist_view(self, request, extra_context=None):
-        if not request.user.is_superuser:
-            self.list_display = ('title',)
+        if request.user.is_superuser:
+            self.list_display = ('title', 'author', 'store', 'include_menu', 'description')
         else:
-            self.list_display = ('title', 'author', 'store')
+            self.list_display = ('title', 'include_menu', 'description')
         return super(CategoryAdmin, self).changelist_view(request, extra_context)
 
     def get_list_filter(self, request):
@@ -86,9 +86,9 @@ class CategoryAdmin(FilterUserAdmin):
 
     def get_fields(self, request, obj=None):
         if request.user.is_superuser:
-            return ['title', 'store']
+            return ['title', 'store', 'include_menu', 'description']
         else:
-            return ['title']
+            return ['title', 'include_menu', 'description']
 
 
 admin.site.register(Category, CategoryAdmin)

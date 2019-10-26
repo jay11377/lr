@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-16 16:45+0000\n"
+"POT-Creation-Date: 2019-10-26 13:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,66 +50,88 @@ msgstr ""
 msgid "choices"
 msgstr ""
 
+#: products/admin.py:98 products/models.py:62
+msgid "category"
+msgstr "catégorie"
+
+#: products/admin.py:144 products/models.py:63 products/models.py:72
+msgid "categories"
+msgstr "catégories"
+
 #: products/apps.py:7
 msgid "products"
 msgstr "carte"
 
-#: products/models.py:10 products/models.py:28 products/models.py:71
+#: products/models.py:16 products/models.py:34
 msgid "title"
 msgstr "titre"
 
-#: products/models.py:11
+#: products/models.py:17
 msgid "domain"
 msgstr "domaine"
 
-#: products/models.py:16
+#: products/models.py:22
 msgid "owner"
 msgstr "gérant"
 
-#: products/models.py:20 products/models.py:40 products/models.py:41
+#: products/models.py:26 products/models.py:46 products/models.py:47
 msgid "store"
 msgstr "restaurant"
 
-#: products/models.py:21
+#: products/models.py:27
 msgid "stores"
 msgstr "restaurants"
 
-#: products/models.py:33 products/models.py:68
+#: products/models.py:39 products/models.py:78
 msgid "author"
 msgstr "auteur"
 
-#: products/models.py:46 products/models.py:58
-msgid "category"
-msgstr "catégorie"
+#: products/models.py:51
+msgid "Include menus"
+msgstr "Inclus des menus"
 
-#: products/models.py:47 products/models.py:62
-msgid "categories"
-msgstr "catégories"
+#: products/models.py:52
+msgid "This category will include menus"
+msgstr "Cette catégorie incluera des menus"
 
-#: products/models.py:72
+#: products/models.py:56 products/models.py:82
 msgid "description"
 msgstr "description"
 
-#: products/models.py:73
+#: products/models.py:57
+msgid "This field is not mandatory, but is useful for SEO purposes"
+msgstr "Ce champs n'est pas obligatoire, mais il est utile pour les moteurs de recherche"
+
+#: products/models.py:81
+msgid "name"
+msgstr "nom"
+
+#: products/models.py:83
 msgid "price"
 msgstr "prix"
 
-#: products/models.py:74
+#: products/models.py:84
 msgid "photo"
 msgstr "photo"
 
-#: products/models.py:75
+#: products/models.py:86
 msgid "spicy"
 msgstr "épicé"
 
-#: products/models.py:76
+#: products/models.py:87
 msgid "vegetarian"
 msgstr "végétarien"
 
-#: products/models.py:79
+#: products/models.py:90
 msgid "dish"
 msgstr "plat"
 
-#: products/models.py:80
+#: products/models.py:91
 msgid "dishes"
 msgstr "plats"
+
+#: products/models.py:95
+#, fuzzy
+#| msgid "photo"
+msgid "Photo"
+msgstr "photo"

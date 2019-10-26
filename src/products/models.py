@@ -46,6 +46,16 @@ class Category(models.Model):
         related_name=_('store'),
         verbose_name=_('store'),
     )
+    include_menu = models.BooleanField(
+        default=False,
+        verbose_name=_('Include menus'),
+        help_text=_('This category will include menus'),
+    )
+    description = models.TextField(
+        blank=True,
+        verbose_name=_('description'),
+        help_text=_('This field is not mandatory, but is useful for SEO purposes'),
+    )
 
 
     class Meta:

@@ -61,11 +61,6 @@ class FilterUserProductsAdmin(ModelAdmin):
 
 
 # Register your models here.
-class InlineProduct(admin.TabularInline):
-    model = Product
-    extra = 1
-
-
 class StoreAdmin(ModelAdmin):
     list_display = ('title', 'owner')
     search_fields = ('title',)
@@ -75,7 +70,6 @@ admin.site.register(Store, StoreAdmin)
 
 
 class CategoryAdmin(FilterUserAdmin):
-    inlines = [InlineProduct]
 
     def changelist_view(self, request, extra_context=None):
         if not request.user.is_superuser:
@@ -126,9 +120,9 @@ class ProductAdmin(FilterUserProductsAdmin):
 
     def changelist_view(self, request, extra_context=None):
         if request.user.is_superuser:
-            self.list_display = ('thumbnail_tag', 'title', 'category', 'get_categories', 'author')
+            self.list_display = ('thumbnail_tag', 'title')
         else:
-            self.list_display = ('thumbnail_tag', 'title', 'category', 'get_categories')
+            self.list_display = ('thumbnail_tag', 'title', 'get_categories')
         self.list_display_links = ('title',)
         return super(ProductAdmin, self).changelist_view(request, extra_context)
 

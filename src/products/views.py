@@ -20,7 +20,7 @@ class CategoriesViewSet(viewsets.ModelViewSet):
     @detail_route()
     def products(self, request, pk=None):
         category = self.get_object()  # retrieve an object by pk provided
-        products = Product.objects.filter(category=category).distinct()
+        products = Product.objects.filter(categories=category).distinct()
         products_json = serializers.ProductSerializer(products, many=True)
         return Response(products_json.data)
 

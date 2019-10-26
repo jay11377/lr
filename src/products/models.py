@@ -57,12 +57,6 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    category = models.ForeignKey(
-        Category,
-        on_delete=models.CASCADE,
-        related_name='dish',
-        verbose_name=_('category'),
-    )
     categories = models.ManyToManyField(
         Category,
         verbose_name=_('categories'),

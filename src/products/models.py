@@ -43,7 +43,7 @@ class Category(models.Model):
         Store,
         default=1,
         on_delete=models.CASCADE,
-        related_name=_('store'),
+        related_name='store',
         verbose_name=_('store'),
     )
     include_menu = models.BooleanField(
@@ -67,10 +67,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    categories = models.ManyToManyField(
-        Category,
-        verbose_name=_('categories'),
-    )
+    title = models.CharField(max_length=200, verbose_name=_('name'))
     author = models.ForeignKey(
         get_user_model(),
         default=1,
@@ -78,13 +75,24 @@ class Product(models.Model):
         verbose_name=_('author'),
         editable=False,
     )
-    title = models.CharField(max_length=200, verbose_name=_('name'))
+    categories = models.ManyToManyField(
+        Category,
+        verbose_name=_('categories'),
+    )
     description = models.TextField(blank=True, verbose_name=_('description'))
-    price = models.DecimalField(default=0, max_digits=5, decimal_places=2, verbose_name=_('price'))
     photo = models.ImageField(null=True, upload_to='products', verbose_name=_('photo'))
     thumbnail = models.ImageField(null=True, upload_to='thumbs', editable=False)
     spicy = models.BooleanField(default=False, verbose_name=_('spicy'))
     vegetarian = models.BooleanField(default=False, verbose_name=_('vegetarian'))
+    tax_rate = models.ForeignKey(
+        'store.TaxRate',
+        default=1,
+        on_delete=models.CASCADE,
+        related_name='store_tax_rate',
+        verbose_name=_('tax rate'),
+    )
+    price = models.DecimalField(default=0, max_digits=5, decimal_places=2, verbose_name=_('price'))
+    price_with_taxes = models.DecimalField(default=0, max_digits=5, decimal_places=2, verbose_name=_('price including taxes'))
 
     class Meta:
         verbose_name = _('dish')

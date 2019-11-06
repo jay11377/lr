@@ -40,6 +40,7 @@ COMMON = [
 APPS = [
     'polls.apps.PollsConfig',
     'products.apps.ProductsConfig',
+    'store.apps.StoreConfig',
 ]
 
 INSTALLED_APPS = [

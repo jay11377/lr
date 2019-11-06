@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-26 13:38+0000\n"
+"POT-Creation-Date: 2019-11-06 16:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,7 +54,7 @@ msgstr ""
 msgid "category"
 msgstr "catégorie"
 
-#: products/admin.py:144 products/models.py:63 products/models.py:72
+#: products/admin.py:144 products/models.py:63 products/models.py:80
 msgid "categories"
 msgstr "catégories"
 
@@ -74,7 +74,8 @@ msgstr "domaine"
 msgid "owner"
 msgstr "gérant"
 
-#: products/models.py:26 products/models.py:46 products/models.py:47
+#: products/models.py:26 products/models.py:47 store/apps.py:7
+#: store/models.py:15
 msgid "store"
 msgstr "restaurant"
 
@@ -82,7 +83,7 @@ msgstr "restaurant"
 msgid "stores"
 msgstr "restaurants"
 
-#: products/models.py:39 products/models.py:78
+#: products/models.py:39 products/models.py:75
 msgid "author"
 msgstr "auteur"
 
@@ -100,37 +101,47 @@ msgstr "description"
 
 #: products/models.py:57
 msgid "This field is not mandatory, but is useful for SEO purposes"
-msgstr "Ce champs n'est pas obligatoire, mais il est utile pour les moteurs de recherche"
+msgstr ""
+"Ce champs n'est pas obligatoire, mais il est utile pour les moteurs de "
+"recherche"
 
-#: products/models.py:81
+#: products/models.py:70 store/models.py:8
 msgid "name"
 msgstr "nom"
 
 #: products/models.py:83
-msgid "price"
-msgstr "prix"
-
-#: products/models.py:84
 msgid "photo"
 msgstr "photo"
 
-#: products/models.py:86
+#: products/models.py:85
 msgid "spicy"
 msgstr "épicé"
 
-#: products/models.py:87
+#: products/models.py:86
 msgid "vegetarian"
 msgstr "végétarien"
 
-#: products/models.py:90
+#: products/models.py:92 store/models.py:9
+msgid "tax rate"
+msgstr "taux de TVA"
+
+#: products/models.py:94
+msgid "price"
+msgstr "prix"
+
+#: products/models.py:95
+msgid "price including taxes"
+msgstr "prix TTC"
+
+#: products/models.py:98
 msgid "dish"
 msgstr "plat"
 
-#: products/models.py:91
+#: products/models.py:99
 msgid "dishes"
 msgstr "plats"
 
-#: products/models.py:95
+#: products/models.py:103
 #, fuzzy
 #| msgid "photo"
 msgid "Photo"

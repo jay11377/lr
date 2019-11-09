@@ -41,7 +41,7 @@ class FilterUserAdmin(ModelAdmin):
             return qs
 
 
-# Flter for products
+# Filter for products
 class FilterUserProductsAdmin(ModelAdmin):
     # force CSS for multiple select fields
     formfield_overrides = {models.ManyToManyField: {'widget': SelectMultiple(attrs={'style': 'width:200px; height:80px'})}, }

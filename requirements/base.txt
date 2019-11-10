@@ -5,3 +5,4 @@ djangorestframework==3.9.2
 psycopg2-binary==2.8
 uwsgi==2.0.18
 django-admin-sortable==2.1.7
+-e git://github.com/darklow/django-suit.git@v2#egg=django-suit

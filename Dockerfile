@@ -11,7 +11,6 @@ RUN apt-get update && apt-get install -y \
 COPY ./requirements /requirements
 
 RUN pip install --upgrade pip && pip install -r /requirements/${REQUIREMENTS_FILENAME}.txt
-RUN pip install https://github.com/darklow/django-suit/tarball/v2
 RUN pip install pillow
 
 WORKDIR /code

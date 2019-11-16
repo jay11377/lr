@@ -85,7 +85,7 @@ class Product(models.Model):
     spicy = models.BooleanField(default=False, verbose_name=_('spicy'))
     vegetarian = models.BooleanField(default=False, verbose_name=_('vegetarian'))
     tax_rate = models.ForeignKey(
-        'store.TaxRate',
+        'products.TaxRate',
         default=1,
         on_delete=models.CASCADE,
         related_name='store_tax_rate',
@@ -146,3 +146,22 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class TaxRate(models.Model):
+    name = models.CharField(max_length=200, verbose_name=_('name'))
+    tax_rate = models.DecimalField(default=0, max_digits=5, decimal_places=2, verbose_name=_('tax rate'))
+    store = models.ForeignKey(
+        'products.Store',
+        default=1,
+        on_delete=models.CASCADE,
+        related_name='store_tax_rate',
+        verbose_name=_('store'),
+    )
+
+    class Meta:
+        verbose_name = _('Tax rate')
+        verbose_name_plural = _('Tax rates')
+
+    def __str__(self):
+        return self.name

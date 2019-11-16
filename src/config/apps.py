@@ -1,21 +1,22 @@
 from suit.apps import DjangoSuitConfig
 from suit.menu import ParentItem, ChildItem
+from django.utils.translation import ugettext_lazy as _
 
 
 class SuitConfig(DjangoSuitConfig):
     layout = 'horizontal'
     menu = (
-        ParentItem('Users', children=[
+        ParentItem(_('Users'), children=[
             ChildItem(model='auth.user'),
-            ChildItem('User groups', 'auth.group'),
+            ChildItem(_('User groups'), 'auth.group'),
         ], align_right=True, icon='fa fa-users'),
-        ParentItem('Products', children=[
+        ParentItem(_('Products'), children=[
             ChildItem(model='products.category'),
             ChildItem(model='products.product'),
         ]),
-        ParentItem('Store', children=[
+        ParentItem(_('Store'), children=[
             ChildItem(model='products.store'),
-            ChildItem(model='products.taxrate'),
+            ChildItem(_('Tax rates'), 'products.taxrate'),
         ]),
     )
 

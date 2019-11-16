@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-16 16:26+0000\n"
+"POT-Creation-Date: 2019-11-16 16:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,26 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: config/apps.py:9
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: config/apps.py:11
+msgid "User groups"
+msgstr "Groupe d'utilisateurs"
+
+#: config/apps.py:13
+msgid "Products"
+msgstr "Carte"
+
+#: config/apps.py:17
+msgid "Store"
+msgstr "Restaurant"
+
+#: config/apps.py:19 products/models.py:164
+msgid "Tax rates"
+msgstr "Taux de TVA"
 
 #: polls/models.py:6
 msgid "question text"
@@ -141,19 +161,9 @@ msgid "dishes"
 msgstr "plats"
 
 #: products/models.py:103
-#, fuzzy
-#| msgid "photo"
 msgid "Photo"
 msgstr "photo"
 
 #: products/models.py:163
-#, fuzzy
-#| msgid "tax rate"
 msgid "Tax rate"
-msgstr "taux de TVA"
-
-#: products/models.py:164
-#, fuzzy
-#| msgid "tax rate"
-msgid "Tax rates"
 msgstr "taux de TVA"

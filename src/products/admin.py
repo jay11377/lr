@@ -147,8 +147,19 @@ class ProductAdmin(FilterUserProductsAdmin):
 admin.site.register(Product, ProductAdmin)
 
 
-class TaxRateAdmin(ModelAdmin):
-    list_display = ('name', 'tax_rate')
+class TaxRateAdmin(FilterUserAdmin):
+    def changelist_view(self, request, extra_context=None):
+        if request.user.is_superuser:
+            self.list_display = ('name', 'tax_rate', 'store')
+        else:
+            self.list_display = ('name', 'tax_rate')
+        return super(TaxRateAdmin, self).changelist_view(request, extra_context)
+
+    def get_fields(self, request, obj=None):
+        if request.user.is_superuser:
+            return ['name', 'tax_rate', 'store']
+        else:
+            return ['name', 'tax_rate']
 
 
 admin.site.register(TaxRate, TaxRateAdmin)

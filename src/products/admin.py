@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
-from .models import Category, Product, Store
+from .models import Category, Product, Store, TaxRate
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
@@ -145,3 +145,10 @@ class ProductAdmin(FilterUserProductsAdmin):
 
 
 admin.site.register(Product, ProductAdmin)
+
+
+class TaxRateAdmin(ModelAdmin):
+    list_display = ('name', 'tax_rate')
+
+
+admin.site.register(TaxRate, TaxRateAdmin)

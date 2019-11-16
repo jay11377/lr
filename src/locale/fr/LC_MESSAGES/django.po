@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-06 16:50+0000\n"
+"POT-Creation-Date: 2019-11-16 16:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,8 +74,7 @@ msgstr "domaine"
 msgid "owner"
 msgstr "gérant"
 
-#: products/models.py:26 products/models.py:47 store/apps.py:7
-#: store/models.py:15
+#: products/models.py:26 products/models.py:47 products/models.py:159
 msgid "store"
 msgstr "restaurant"
 
@@ -105,7 +104,7 @@ msgstr ""
 "Ce champs n'est pas obligatoire, mais il est utile pour les moteurs de "
 "recherche"
 
-#: products/models.py:70 store/models.py:8
+#: products/models.py:70 products/models.py:152
 msgid "name"
 msgstr "nom"
 
@@ -121,7 +120,7 @@ msgstr "épicé"
 msgid "vegetarian"
 msgstr "végétarien"
 
-#: products/models.py:92 store/models.py:9
+#: products/models.py:92 products/models.py:153
 msgid "tax rate"
 msgstr "taux de TVA"
 
@@ -146,3 +145,15 @@ msgstr "plats"
 #| msgid "photo"
 msgid "Photo"
 msgstr "photo"
+
+#: products/models.py:163
+#, fuzzy
+#| msgid "tax rate"
+msgid "Tax rate"
+msgstr "taux de TVA"
+
+#: products/models.py:164
+#, fuzzy
+#| msgid "tax rate"
+msgid "Tax rates"
+msgstr "taux de TVA"

@@ -7,7 +7,6 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('store', '0001_initial'),
         ('products', '0023_product_price_with_taxes'),
     ]
 

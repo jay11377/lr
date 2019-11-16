@@ -40,11 +40,10 @@ COMMON = [
 APPS = [
     'polls.apps.PollsConfig',
     'products.apps.ProductsConfig',
-    'store.apps.StoreConfig',
 ]
 
 INSTALLED_APPS = [
-    'suit',
+    'config.apps.SuitConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -132,6 +132,12 @@ class ProductAdmin(FilterUserProductsAdmin):
                 kwargs["queryset"] = Category.objects.filter(store=get_user_store(request.user))
         return super(ProductAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
 
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == 'tax_rate':
+            if not request.user.is_superuser:
+                kwargs["queryset"] = TaxRate.objects.filter(store=get_user_store(request.user))
+        return super(ProductAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
     def get_list_filter(self, request):
         if request.user.is_superuser:
             return [CategoriesListFilters]

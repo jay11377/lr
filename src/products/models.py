@@ -164,4 +164,4 @@ class TaxRate(models.Model):
         verbose_name_plural = _('Tax rates')
 
     def __str__(self):
-        return self.name
+        return "%s (%s %%)" % (self.name, self.tax_rate)

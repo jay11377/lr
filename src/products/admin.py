@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
-from .models import Category, Product, Store, TaxRate
+from .models import Category, Product, Store, TaxRate, DeliveryArea
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
@@ -169,3 +169,21 @@ class TaxRateAdmin(FilterUserAdmin):
 
 
 admin.site.register(TaxRate, TaxRateAdmin)
+
+
+class DeliveryAreaAdmin(FilterUserAdmin):
+    def changelist_view(self, request, extra_context=None):
+        if request.user.is_superuser:
+            self.list_display = ('name', 'author', 'store', 'minimum', 'delivery_duration')
+        else:
+            self.list_display = ('name', 'minimum', 'delivery_duration')
+        return super(DeliveryAreaAdmin, self).changelist_view(request, extra_context)
+
+    def get_fields(self, request, obj=None):
+        if request.user.is_superuser:
+            return ['name', 'store', 'minimum', 'delivery_duration']
+        else:
+            return ['name', 'minimum', 'delivery_duration']
+
+
+admin.site.register(DeliveryArea, DeliveryAreaAdmin)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-16 16:53+0000\n"
+"POT-Creation-Date: 2019-12-06 19:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,11 +30,19 @@ msgstr "Groupe d'utilisateurs"
 msgid "Products"
 msgstr "Carte"
 
-#: config/apps.py:17
+#: config/apps.py:17 products/models.py:198
+msgid "Delivery areas"
+msgstr "Zones de livraison"
+
+#: config/apps.py:18
+msgid "Manage areas"
+msgstr "Gérer les zones"
+
+#: config/apps.py:20
 msgid "Store"
 msgstr "Restaurant"
 
-#: config/apps.py:19 products/models.py:164
+#: config/apps.py:22 products/models.py:164
 msgid "Tax rates"
 msgstr "Taux de TVA"
 
@@ -74,7 +82,7 @@ msgstr ""
 msgid "category"
 msgstr "catégorie"
 
-#: products/admin.py:144 products/models.py:63 products/models.py:80
+#: products/admin.py:150 products/models.py:63 products/models.py:80
 msgid "categories"
 msgstr "catégories"
 
@@ -95,6 +103,7 @@ msgid "owner"
 msgstr "gérant"
 
 #: products/models.py:26 products/models.py:47 products/models.py:159
+#: products/models.py:184
 msgid "store"
 msgstr "restaurant"
 
@@ -102,7 +111,7 @@ msgstr "restaurant"
 msgid "stores"
 msgstr "restaurants"
 
-#: products/models.py:39 products/models.py:75
+#: products/models.py:39 products/models.py:75 products/models.py:176
 msgid "author"
 msgstr "auteur"
 
@@ -124,7 +133,7 @@ msgstr ""
 "Ce champs n'est pas obligatoire, mais il est utile pour les moteurs de "
 "recherche"
 
-#: products/models.py:70 products/models.py:152
+#: products/models.py:70 products/models.py:152 products/models.py:171
 msgid "name"
 msgstr "nom"
 
@@ -167,3 +176,15 @@ msgstr "photo"
 #: products/models.py:163
 msgid "Tax rate"
 msgstr "taux de TVA"
+
+#: products/models.py:190
+msgid "minimum"
+msgstr "minimum"
+
+#: products/models.py:193
+msgid "delivery duration"
+msgstr "durée de livraison"
+
+#: products/models.py:197
+msgid "Delivery area"
+msgstr "Zone de livraison"

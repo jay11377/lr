@@ -165,3 +165,37 @@ class TaxRate(models.Model):
 
     def __str__(self):
         return "%s (%s %%)" % (self.name, self.tax_rate)
+
+
+class DeliveryArea(models.Model):
+    name = models.CharField(max_length=200, verbose_name=_('name'))
+    author = models.ForeignKey(
+        get_user_model(),
+        default=1,
+        on_delete=models.CASCADE,
+        verbose_name=_('author'),
+        editable=False,
+    )
+    store = models.ForeignKey(
+        Store,
+        default=1,
+        on_delete=models.CASCADE,
+        related_name='da_store',
+        verbose_name=_('store'),
+    )
+    minimum = models.DecimalField(
+        default=0,
+        max_digits=5,
+        decimal_places=2,
+        verbose_name=_('minimum'),
+    )
+    delivery_duration = models.DurationField(
+        verbose_name=_('delivery duration'),
+    )
+
+    class Meta:
+        verbose_name = _('Delivery area')
+        verbose_name_plural = _('Delivery areas')
+
+    def __str__(self):
+        return self.name

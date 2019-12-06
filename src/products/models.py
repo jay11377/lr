@@ -194,8 +194,42 @@ class DeliveryArea(models.Model):
     )
 
     class Meta:
-        verbose_name = _('Delivery area')
-        verbose_name_plural = _('Delivery areas')
+        verbose_name = _('delivery area')
+        verbose_name_plural = _('delivery areas')
+
+    def __str__(self):
+        return self.name
+
+
+class DeliveryCity(models.Model):
+    name = models.CharField(max_length=200, verbose_name=_('name'))
+    author = models.ForeignKey(
+        get_user_model(),
+        default=1,
+        on_delete=models.CASCADE,
+        verbose_name=_('author'),
+        editable=False,
+    )
+    store = models.ForeignKey(
+        Store,
+        default=1,
+        on_delete=models.CASCADE,
+        related_name='dc_store',
+        verbose_name=_('store'),
+    )
+    delivery_area = models.ForeignKey(
+        DeliveryArea,
+        on_delete=models.CASCADE,
+        related_name='dc_area',
+        verbose_name=_('delivery area'),
+    )
+    zip_code = models.IntegerField(
+        verbose_name=_('zip code'),
+    )
+
+    class Meta:
+        verbose_name = _('delivery city')
+        verbose_name_plural = _('delivery cities')
 
     def __str__(self):
         return self.name

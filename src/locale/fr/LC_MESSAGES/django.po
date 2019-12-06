@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-06 19:07+0000\n"
+"POT-Creation-Date: 2019-12-06 19:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgstr "Groupe d'utilisateurs"
 msgid "Products"
 msgstr "Carte"
 
-#: config/apps.py:17 products/models.py:198
+#: config/apps.py:17
 msgid "Delivery areas"
 msgstr "Zones de livraison"
 
@@ -38,11 +38,15 @@ msgstr "Zones de livraison"
 msgid "Manage areas"
 msgstr "Gérer les zones"
 
-#: config/apps.py:20
+#: config/apps.py:19
+msgid "Manage cities"
+msgstr "Gérer les villes"
+
+#: config/apps.py:21
 msgid "Store"
 msgstr "Restaurant"
 
-#: config/apps.py:22 products/models.py:164
+#: config/apps.py:23 products/models.py:164
 msgid "Tax rates"
 msgstr "Taux de TVA"
 
@@ -103,7 +107,7 @@ msgid "owner"
 msgstr "gérant"
 
 #: products/models.py:26 products/models.py:47 products/models.py:159
-#: products/models.py:184
+#: products/models.py:184 products/models.py:218
 msgid "store"
 msgstr "restaurant"
 
@@ -112,6 +116,7 @@ msgid "stores"
 msgstr "restaurants"
 
 #: products/models.py:39 products/models.py:75 products/models.py:176
+#: products/models.py:210
 msgid "author"
 msgstr "auteur"
 
@@ -134,6 +139,7 @@ msgstr ""
 "recherche"
 
 #: products/models.py:70 products/models.py:152 products/models.py:171
+#: products/models.py:205
 msgid "name"
 msgstr "nom"
 
@@ -185,6 +191,22 @@ msgstr "minimum"
 msgid "delivery duration"
 msgstr "durée de livraison"
 
-#: products/models.py:197
-msgid "Delivery area"
-msgstr "Zone de livraison"
+#: products/models.py:197 products/models.py:224
+msgid "delivery area"
+msgstr "zone de livraison"
+
+#: products/models.py:198
+msgid "delivery areas"
+msgstr "zone de livraison"
+
+#: products/models.py:227
+msgid "zip code"
+msgstr "code postal"
+
+#: products/models.py:231
+msgid "delivery city"
+msgstr "ville de livraison"
+
+#: products/models.py:232
+msgid "delivery cities"
+msgstr "villes de livraison"

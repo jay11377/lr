@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
-from .models import Category, Product, Store, TaxRate, DeliveryArea
+from .models import Category, Product, Store, TaxRate, DeliveryArea, DeliveryCity
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
@@ -187,3 +187,27 @@ class DeliveryAreaAdmin(FilterUserAdmin):
 
 
 admin.site.register(DeliveryArea, DeliveryAreaAdmin)
+
+
+class DeliveryCityAdmin(FilterUserAdmin):
+    def changelist_view(self, request, extra_context=None):
+        if request.user.is_superuser:
+            self.list_display = ('name', 'author', 'store', 'delivery_area', 'zip_code')
+        else:
+            self.list_display = ('name', 'delivery_area', 'zip_code')
+        return super(DeliveryCityAdmin, self).changelist_view(request, extra_context)
+
+    def get_fields(self, request, obj=None):
+        if request.user.is_superuser:
+            return ['name', 'store', 'delivery_area', 'zip_code']
+        else:
+            return ['name', 'delivery_area', 'zip_code']
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == 'delivery_area':
+            if not request.user.is_superuser:
+                kwargs["queryset"] = DeliveryArea.objects.filter(store=get_user_store(request.user))
+        return super(DeliveryCityAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
+
+admin.site.register(DeliveryCity, DeliveryCityAdmin)

@@ -1,10 +1,11 @@
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
-from .models import Category, Product, Store, TaxRate, DeliveryArea, DeliveryCity
+from .models import Category, Product, Store, TaxRate, DeliveryArea, DeliveryCity, Menu, MenuOption, MenuOptionProduct
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.forms import SelectMultiple
+from django.utils.encoding import force_text
 
 
 def get_user_store(user):
@@ -115,6 +116,77 @@ class CategoriesListFilters(admin.SimpleListFilter):
         return queryset
 
 
+class MenuCategoriesListFilters(admin.SimpleListFilter):
+    title = _('category')
+    parameter_name = 'categories__id__exact'
+    default_value = None
+
+    def lookups(self, request, model_admin):
+        categories_list = []
+        if request.user.is_superuser:
+            queryset = Category.objects.filter(include_menu=1)
+        else:
+            queryset = Category.objects.filter(store=get_user_store(request.user), include_menu=1)
+        for category in queryset:
+            categories_list.append((str(category.id), category.title))
+        return sorted(categories_list, key=lambda tp: tp[1])
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(categories__id__exact=self.value())
+        return queryset
+
+
+class MenuOptionsListFilters(admin.SimpleListFilter):
+    title = _('option')
+    parameter_name = 'menu_option_id'
+    default_value = None
+
+    def lookups(self, request, model_admin):
+        options_list = []
+        if request.user.is_superuser:
+            queryset = MenuOption.objects.all()
+        else:
+            queryset = MenuOption.objects.filter(store=get_user_store(request.user))
+        for option in queryset:
+            options_list.append((str(option.id), option.title))
+        return sorted(options_list, key=lambda tp: tp[1])
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(menu_option_id=self.value())
+        return queryset
+
+    def value(self):
+        """
+        Overriding this method will allow us to always have a default value.
+        """
+        value = super(MenuOptionsListFilters, self).value()
+        if value is None:
+            if self.default_value is None:
+                # If there is at least one Species, return the first by name. Otherwise, None.
+                first_option = MenuOption.objects.order_by('title').first()
+                value = None if first_option is None else first_option.id
+                self.default_value = value
+            else:
+                value = self.default_value
+        return str(value)
+
+    def choices(self, changelist):
+        """Copied from source code to remove the "All" Option"""
+        yield {
+            'selected': self.value() is None,
+            'query_string': changelist.get_query_string({}, [self.parameter_name]),
+            'display': '',
+        }
+        for lookup, title in self.lookup_choices:
+            yield {
+                'selected': self.value() == force_text(lookup),
+                'query_string': changelist.get_query_string({self.parameter_name: lookup}, []),
+                'display': title,
+            }
+
+
 class ProductAdmin(FilterUserProductsAdmin):
     search_fields = ('title',)
 
@@ -151,6 +223,94 @@ class ProductAdmin(FilterUserProductsAdmin):
 
 
 admin.site.register(Product, ProductAdmin)
+
+
+class MenuAdmin(ProductAdmin):
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == 'categories':
+            if request.user.is_superuser:
+                kwargs["queryset"] = Category.objects.filter(include_menu=1)
+            else:
+                kwargs["queryset"] = Category.objects.filter(store=get_user_store(request.user), include_menu=1)
+        return super(ProductAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
+
+    def changelist_view(self, request, extra_context=None):
+        if request.user.is_superuser:
+            self.list_display = ('thumbnail_tag', 'title', 'get_options')
+        else:
+            self.list_display = ('thumbnail_tag', 'title', 'get_categories', 'get_options')
+        self.list_display_links = ('title',)
+        return super(ProductAdmin, self).changelist_view(request, extra_context)
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == 'options':
+            if not request.user.is_superuser:
+                kwargs["queryset"] = MenuOption.objects.filter(store=get_user_store(request.user))
+        return super(MenuAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
+
+    def get_options(self, request):
+        options_html = "".join([format_html('{}</br>', o.title) for o in request.options.all()])
+        return format_html(options_html)
+    get_options.short_description = _('options')
+
+    def get_list_filter(self, request):
+        if request.user.is_superuser:
+            return [MenuCategoriesListFilters]
+        else:
+            return [MenuCategoriesListFilters]
+
+admin.site.register(Menu, MenuAdmin)
+
+
+class MenuOptionAdmin(FilterUserAdmin):
+
+    def changelist_view(self, request, extra_context=None):
+        if request.user.is_superuser:
+            self.list_display = ('title', 'admin_title', 'author', 'store')
+        else:
+            self.list_display = ('title', 'admin_title')
+        return super(MenuOptionAdmin, self).changelist_view(request, extra_context)
+
+    def get_fields(self, request, obj=None):
+        if request.user.is_superuser:
+            return ['title', 'store', 'admin_title']
+        else:
+            return ['title', 'admin_title']
+
+
+admin.site.register(MenuOption, MenuOptionAdmin)
+
+
+class MenuOptionProductAdmin(FilterUserAdmin):
+
+    def changelist_view(self, request, extra_context=None):
+        if request.user.is_superuser:
+            self.list_display = ('product', 'quantity', 'menu_option', 'author', 'store')
+        else:
+            self.list_display = ('product', 'quantity')
+        return super(MenuOptionProductAdmin, self).changelist_view(request, extra_context)
+
+    def get_fields(self, request, obj=None):
+        if request.user.is_superuser:
+            return ['menu_option', 'product', 'store', 'quantity']
+        else:
+            return ['menu_option', 'product', 'quantity']
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == 'menu_option':
+            if not request.user.is_superuser:
+                kwargs["queryset"] = MenuOption.objects.filter(store=get_user_store(request.user))
+        return super(MenuOptionProductAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
+    def get_list_filter(self, request):
+        if request.user.is_superuser:
+            return [MenuOptionsListFilters]
+        else:
+            return [MenuOptionsListFilters]
+
+
+admin.site.register(MenuOptionProduct, MenuOptionProductAdmin)
 
 
 class TaxRateAdmin(FilterUserAdmin):

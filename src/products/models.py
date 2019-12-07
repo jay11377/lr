@@ -9,6 +9,19 @@ from io import BytesIO
 import os
 from PIL import Image
 
+QUANTITY_CHOICES = (
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 6),
+    (7, 7),
+    (8, 8),
+    (9, 9),
+    (10, 10),
+)
+
 # Create your models here.
 
 
@@ -146,6 +159,90 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class MenuOption(models.Model):
+    title = models.CharField(
+        max_length=200,
+        verbose_name=_('title'),
+        help_text=_('Title visible by the client on the website'),
+    )
+    author = models.ForeignKey(
+        get_user_model(),
+        default=1,
+        on_delete=models.CASCADE,
+        verbose_name=_('author'),
+        editable=False,
+    )
+    store = models.ForeignKey(
+        Store,
+        default=1,
+        on_delete=models.CASCADE,
+        related_name='mo_store',
+        verbose_name=_('store'),
+    )
+    admin_title = models.CharField(
+        blank=True,
+        max_length=200,
+        verbose_name=_('Administration title'),
+        help_text=_('This title is only visible by the administrator, so that he can tell apart options that could have the same name on the website. E.g: "Desert for $15 menu" and "Desert for $25 menu"'),
+    )
+
+
+    class Meta:
+        verbose_name = _('menu option')
+        verbose_name_plural = _('menu options')
+
+    def __str__(self):
+        return self.title
+
+
+class MenuOptionProduct(models.Model):
+    author = models.ForeignKey(
+        get_user_model(),
+        default=1,
+        on_delete=models.CASCADE,
+        verbose_name=_('author'),
+        editable=False,
+    )
+    store = models.ForeignKey(
+        Store,
+        default=1,
+        on_delete=models.CASCADE,
+        related_name='mop_store',
+        verbose_name=_('store'),
+    )
+    menu_option = models.ForeignKey(
+        MenuOption,
+        on_delete=models.CASCADE,
+        related_name='mop_option',
+        verbose_name=_('option'),
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name='mop_product',
+        verbose_name=_('product'),
+    )
+    quantity = models.IntegerField(
+        choices=QUANTITY_CHOICES,
+        verbose_name=_('quantity'),
+    )
+
+
+    class Meta:
+        verbose_name = _('option product')
+        verbose_name_plural = _('option products')
+
+    def __str__(self):
+        return self.product.title
+
+
+class Menu(Product):
+    options = models.ManyToManyField(
+        MenuOption,
+        verbose_name=_('options'),
+    )
 
 
 class TaxRate(models.Model):

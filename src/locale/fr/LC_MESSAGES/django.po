@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-06 19:48+0000\n"
+"POT-Creation-Date: 2019-12-07 13:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,23 +30,27 @@ msgstr "Groupe d'utilisateurs"
 msgid "Products"
 msgstr "Carte"
 
-#: config/apps.py:17
+#: config/apps.py:19
+msgid "Menu options"
+msgstr "Options des menus"
+
+#: config/apps.py:22
 msgid "Delivery areas"
 msgstr "Zones de livraison"
 
-#: config/apps.py:18
+#: config/apps.py:23
 msgid "Manage areas"
 msgstr "Gérer les zones"
 
-#: config/apps.py:19
+#: config/apps.py:24
 msgid "Manage cities"
 msgstr "Gérer les villes"
 
-#: config/apps.py:21
+#: config/apps.py:26
 msgid "Store"
 msgstr "Restaurant"
 
-#: config/apps.py:23 products/models.py:164
+#: config/apps.py:28 products/models.py:261
 msgid "Tax rates"
 msgstr "Taux de TVA"
 
@@ -82,131 +86,182 @@ msgstr ""
 msgid "choices"
 msgstr ""
 
-#: products/admin.py:98 products/models.py:62
+#: products/admin.py:99 products/admin.py:120 products/models.py:75
 msgid "category"
 msgstr "catégorie"
 
-#: products/admin.py:150 products/models.py:63 products/models.py:80
+#: products/admin.py:141 products/models.py:219
+msgid "option"
+msgstr "option"
+
+#: products/admin.py:222 products/models.py:76 products/models.py:93
 msgid "categories"
 msgstr "catégories"
+
+#: products/admin.py:255 products/models.py:244
+msgid "options"
+msgstr "options"
 
 #: products/apps.py:7
 msgid "products"
 msgstr "carte"
 
-#: products/models.py:16 products/models.py:34
+#: products/models.py:29 products/models.py:47 products/models.py:167
 msgid "title"
 msgstr "titre"
 
-#: products/models.py:17
+#: products/models.py:30
 msgid "domain"
 msgstr "domaine"
 
-#: products/models.py:22
+#: products/models.py:35
 msgid "owner"
 msgstr "gérant"
 
-#: products/models.py:26 products/models.py:47 products/models.py:159
-#: products/models.py:184 products/models.py:218
+#: products/models.py:39 products/models.py:60 products/models.py:182
+#: products/models.py:213 products/models.py:256 products/models.py:281
+#: products/models.py:315
 msgid "store"
 msgstr "restaurant"
 
-#: products/models.py:27
+#: products/models.py:40
 msgid "stores"
 msgstr "restaurants"
 
-#: products/models.py:39 products/models.py:75 products/models.py:176
-#: products/models.py:210
+#: products/models.py:52 products/models.py:88 products/models.py:174
+#: products/models.py:205 products/models.py:273 products/models.py:307
 msgid "author"
 msgstr "auteur"
 
-#: products/models.py:51
+#: products/models.py:64
 msgid "Include menus"
 msgstr "Inclus des menus"
 
-#: products/models.py:52
+#: products/models.py:65
 msgid "This category will include menus"
 msgstr "Cette catégorie incluera des menus"
 
-#: products/models.py:56 products/models.py:82
+#: products/models.py:69 products/models.py:95
 msgid "description"
 msgstr "description"
 
-#: products/models.py:57
+#: products/models.py:70
 msgid "This field is not mandatory, but is useful for SEO purposes"
 msgstr ""
 "Ce champs n'est pas obligatoire, mais il est utile pour les moteurs de "
 "recherche"
 
-#: products/models.py:70 products/models.py:152 products/models.py:171
-#: products/models.py:205
+#: products/models.py:83 products/models.py:249 products/models.py:268
+#: products/models.py:302
 msgid "name"
 msgstr "nom"
 
-#: products/models.py:83
+#: products/models.py:96
 msgid "photo"
 msgstr "photo"
 
-#: products/models.py:85
+#: products/models.py:98
 msgid "spicy"
 msgstr "épicé"
 
-#: products/models.py:86
+#: products/models.py:99
 msgid "vegetarian"
 msgstr "végétarien"
 
-#: products/models.py:92 products/models.py:153
+#: products/models.py:105 products/models.py:250
 msgid "tax rate"
 msgstr "taux de TVA"
 
-#: products/models.py:94
+#: products/models.py:107
 msgid "price"
 msgstr "prix"
 
-#: products/models.py:95
+#: products/models.py:108
 msgid "price including taxes"
 msgstr "prix TTC"
 
-#: products/models.py:98
+#: products/models.py:111
 msgid "dish"
 msgstr "plat"
 
-#: products/models.py:99
+#: products/models.py:112
 msgid "dishes"
 msgstr "plats"
 
-#: products/models.py:103
+#: products/models.py:116
 msgid "Photo"
 msgstr "photo"
 
-#: products/models.py:163
+#: products/models.py:168
+msgid "Title visible by the client on the website"
+msgstr "Titre visible par le client sur le site. Ex: Dessert"
+
+#: products/models.py:187
+msgid "Administration title"
+msgstr "Titre pour l'administrateur"
+
+#: products/models.py:188
+msgid ""
+"This title is only visible by the administrator, so that he can tell apart "
+"options that could have the same name on the website. E.g: \"Desert for $15 "
+"menu\" and \"Desert for $25 menu\""
+msgstr ""
+"Titre visible uniquement par l'administrateur afin de pouvoir distinguer les "
+"options pouvant avoir le même nom sur le site. Ex: \"Dessert du menu à 15€\" "
+"et \"Desert du menu à 25€ \""
+
+#: products/models.py:193
+msgid "menu option"
+msgstr "option du menu"
+
+#: products/models.py:194
+msgid "menu options"
+msgstr "options du menu"
+
+#: products/models.py:225
+msgid "product"
+msgstr "plat"
+
+#: products/models.py:229
+msgid "quantity"
+msgstr "quantité"
+
+#: products/models.py:234
+msgid "option product"
+msgstr "plat à l'option"
+
+#: products/models.py:235
+msgid "option products"
+msgstr "plats pour cette option"
+
+#: products/models.py:260
 msgid "Tax rate"
 msgstr "taux de TVA"
 
-#: products/models.py:190
+#: products/models.py:287
 msgid "minimum"
 msgstr "minimum"
 
-#: products/models.py:193
+#: products/models.py:290
 msgid "delivery duration"
 msgstr "durée de livraison"
 
-#: products/models.py:197 products/models.py:224
+#: products/models.py:294 products/models.py:321
 msgid "delivery area"
 msgstr "zone de livraison"
 
-#: products/models.py:198
+#: products/models.py:295
 msgid "delivery areas"
 msgstr "zone de livraison"
 
-#: products/models.py:227
+#: products/models.py:324
 msgid "zip code"
 msgstr "code postal"
 
-#: products/models.py:231
+#: products/models.py:328
 msgid "delivery city"
 msgstr "ville de livraison"
 
-#: products/models.py:232
+#: products/models.py:329
 msgid "delivery cities"
 msgstr "villes de livraison"

@@ -17,7 +17,6 @@ class SuitConfig(DjangoSuitConfig):
             # ChildItem(model='products.menuoption'),
             # ChildItem(model='products.menuoptionproduct'),
             ChildItem(_('Menu options'), 'products.menuoptionproduct'),
-
         ]),
         ParentItem(_('Delivery areas'), children=[
             ChildItem(_('Manage areas'), 'products.deliveryarea'),

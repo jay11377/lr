@@ -5,7 +5,6 @@ from .views import(
     index,
     CategoriesViewSet,
     ProductViewSet,
-    CreateAccountView,
 )
 
 __app_name__ = 'products'
@@ -18,5 +17,4 @@ router.register('products', ProductViewSet)
 urlpatterns = [
     path('api/', include(router.urls)),
     path('', index, name='index'),
-    path('create-account/', CreateAccountView.as_view(), name='create_account'),
 ]

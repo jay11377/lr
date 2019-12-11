@@ -9,6 +9,7 @@ class SuitConfig(DjangoSuitConfig):
         ParentItem(_('Users'), children=[
             ChildItem(model='auth.user'),
             ChildItem(_('User groups'), 'auth.group'),
+            ChildItem(model='products.shippingaddress'),
         ], align_right=True, icon='fa fa-users'),
         ParentItem(_('Products'), children=[
             ChildItem(model='products.category'),

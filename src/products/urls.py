@@ -16,5 +16,6 @@ router.register('products', ProductViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
+    path('accounts/', include('allauth.urls')),
     path('', index, name='index'),
 ]

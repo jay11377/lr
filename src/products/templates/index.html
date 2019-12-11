@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Accueil de la bibliothèque locale</h1>
-  <p>Bienvenue à la bibliothèque locale, un site web développé par <em>Mozilla Developer Network</em>!</p>
-  <h2>Contenu dynamique</h2>
-  <p>Num : {{ num }}</p>
+    <h1>Accueil de la bibliothèque locale</h1>
+    <p>Bienvenue à la bibliothèque locale, un site web développé par <em>Mozilla Developer Network</em>!</p>
+    <h2>Contenu dynamique</h2>
+    <p>Num : {{ num }}</p>
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.get_full_name }}. Thanks for logging in.</p>
+    {% else %}
+        <p>Welcome, new user. Please log in.</p>
+    {% endif %}
 {% endblock %}

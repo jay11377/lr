@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-07 13:26+0000\n"
+"POT-Creation-Date: 2019-12-11 10:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,23 +34,23 @@ msgstr "Carte"
 msgid "Menu options"
 msgstr "Options des menus"
 
-#: config/apps.py:22
+#: config/apps.py:21
 msgid "Delivery areas"
 msgstr "Zones de livraison"
 
-#: config/apps.py:23
+#: config/apps.py:22
 msgid "Manage areas"
 msgstr "Gérer les zones"
 
-#: config/apps.py:24
+#: config/apps.py:23
 msgid "Manage cities"
 msgstr "Gérer les villes"
 
-#: config/apps.py:26
+#: config/apps.py:25
 msgid "Store"
 msgstr "Restaurant"
 
-#: config/apps.py:28 products/models.py:261
+#: config/apps.py:27 products/models.py:261
 msgid "Tax rates"
 msgstr "Taux de TVA"
 
@@ -254,7 +254,7 @@ msgstr "zone de livraison"
 msgid "delivery areas"
 msgstr "zone de livraison"
 
-#: products/models.py:324
+#: products/models.py:324 products/models.py:346
 msgid "zip code"
 msgstr "code postal"
 
@@ -265,3 +265,82 @@ msgstr "ville de livraison"
 #: products/models.py:329
 msgid "delivery cities"
 msgstr "villes de livraison"
+
+#: products/models.py:338
+msgid "address title"
+msgstr "titre de l'adresse"
+
+#: products/models.py:339
+msgid "(Home, Office)"
+msgstr "(Maison, Bureau)"
+
+#: products/models.py:341
+msgid "company"
+msgstr "société"
+
+#: products/models.py:342
+msgid "first name"
+msgstr "prénom"
+
+#: products/models.py:343
+#, fuzzy
+#| msgid "name"
+msgid "last name"
+msgstr "nom"
+
+#: products/models.py:344
+msgid "address"
+msgstr "adresse"
+
+#: products/models.py:345
+msgid "address (2)"
+msgstr "adresse (2)"
+
+#: products/models.py:347
+msgid "city"
+msgstr "ville"
+
+#: products/models.py:348
+msgid "phone"
+msgstr "téléphone"
+
+#: products/models.py:349
+msgid "entrance code"
+msgstr "code d'entrée"
+
+#: products/models.py:350
+msgid "intercom"
+msgstr "interphone"
+
+#: products/models.py:351
+msgid "stairs"
+msgstr "escalier"
+
+#: products/models.py:352
+msgid "floor"
+msgstr "étage"
+
+#: products/models.py:353
+msgid "apartment number"
+msgstr "Numéro d'appartement"
+
+#: products/models.py:354
+msgid "comment"
+msgstr "Remarque"
+
+#: products/models.py:357
+msgid "shipping address"
+msgstr "adresse de livraison"
+
+#: products/models.py:358
+msgid "shipping addresses"
+msgstr "adresses de livraison"
+
+#: products/templates/create-account.html:6
+#: products/templates/create-account.html:7
+msgid "Create an account"
+msgstr "Créer un compte"
+
+#: products/templates/create-account.html:13
+msgid "Validate"
+msgstr "Valider"

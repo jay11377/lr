@@ -1,15 +1,22 @@
 from django.urls import include, path
 from rest_framework.routers import SimpleRouter
 
-from . import views
+from .views import(
+    index,
+    CategoriesViewSet,
+    ProductViewSet,
+    CreateAccountView,
+)
 
 __app_name__ = 'products'
 
 router = SimpleRouter()
-router.register('categories', views.CategoriesViewSet)
-router.register('products', views.ProductViewSet)
+router.register('categories', CategoriesViewSet)
+router.register('products', ProductViewSet)
 
 
 urlpatterns = [
-    path('v1/', include(router.urls)),
+    path('api/', include(router.urls)),
+    path('', index, name='index'),
+    path('create-account/', CreateAccountView.as_view(), name='create_account'),
 ]

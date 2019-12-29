@@ -1,19 +1,35 @@
 from django.shortcuts import render
 from django.urls import reverse
+from django.contrib.sites.models import Site
 from django.views.generic import CreateView
 from django_currentuser.middleware import get_current_user
 from rest_framework import viewsets
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import list_route, detail_route
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
-from .models import Category, Product, ShippingAddress
+from .models import Category, Product, ShippingAddress, Store
 from . import serializers
 
 import requests
+import re
 
+
+def get_site_id(host):
+    domain = get_domain(host)
+    site = Site.objects.get(domain=domain)
+    return site.id
+
+
+def get_domain(host):
+    replace = {
+        ":8000": "",
+    }
+    pattern = "|".join(map(re.escape, replace.keys()))
+    return re.sub(pattern, lambda m: replace[m.group()], host)
 
 # Create your views here.
+
 
 class BaseViewSet (viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
@@ -22,6 +38,15 @@ class BaseViewSet (viewsets.ModelViewSet):
 class CategoriesViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.CategorySerializer
     queryset = Category.objects.all()
+
+    @list_route()
+    def site(self, request):
+        url_home = request.get_host()
+        site_id = get_site_id(url_home)
+        store = Store.objects.get(site_id=site_id)
+        categories = Category.objects.filter(store=store)
+        categories_json = serializers.CategorySerializer(categories, many=True)
+        return Response(categories_json.data)
 
     @detail_route()
     def products(self, request, pk=None):
@@ -68,10 +93,15 @@ class ShippingAddressCreateView(CreateView):
 
 
 def index(request):
-    endpoint = request.build_absolute_uri('/api/categories/')
+    endpoint = request.build_absolute_uri('/api/categories/site/')
     response = requests.get(endpoint)
     categories = response.json()
+
+    url_home = request.get_host()
+    site_id = get_site_id(url_home)
+    store = Store.objects.get(site_id=site_id)
     context = {
+        'store': store.title,
         'categories': categories,
     }
     return render(request, 'index.html', context=context)

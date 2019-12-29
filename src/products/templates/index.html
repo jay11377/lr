@@ -4,6 +4,7 @@
     <h1>Accueil de la bibliothèque locale</h1>
     <p>Bienvenue à la bibliothèque locale, un site web développé par <em>Mozilla Developer Network</em>!</p>
     <h2>Categories</h2>
+    <p>store : {{ store }}</p>
     {% for category in categories %}
         <p>{{ category.title }}</p>
     {% endfor %}

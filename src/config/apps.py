@@ -24,6 +24,7 @@ class SuitConfig(DjangoSuitConfig):
             ChildItem(_('Manage cities'), 'products.deliverycity'),
         ]),
         ParentItem(_('Store'), children=[
+            ChildItem(model='sites.site'),
             ChildItem(model='products.store'),
             ChildItem(_('Tax rates'), 'products.taxrate'),
         ]),

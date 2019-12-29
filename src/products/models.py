@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.html import mark_safe
@@ -30,7 +31,7 @@ QUANTITY_CHOICES = (
 
 class Store(models.Model):
     title = models.CharField(max_length=200, verbose_name=_('title'))
-    domain = models.CharField(max_length=200, verbose_name=_('domain'))
+    site = models.ForeignKey(Site, on_delete=models.CASCADE)
     owner = models.ForeignKey(
         User,
         on_delete=models.CASCADE,

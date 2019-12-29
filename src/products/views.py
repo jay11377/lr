@@ -1,16 +1,19 @@
 from django.shortcuts import render, redirect
-# from django.views import View
+from django.urls import reverse
+from django.views.generic import CreateView
+from django_currentuser.middleware import get_current_user
 from rest_framework import viewsets
 from rest_framework.decorators import detail_route
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from .models import Category, Product, ShippingAddress
-
 from . import serializers
 
 
+
 # Create your views here.
+
 class BaseViewSet (viewsets.ModelViewSet):
     permission_classes = (AllowAny,)
 
@@ -32,8 +35,49 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
 
 
+class ShippingAddressCreateView(CreateView):
+    model = ShippingAddress
+    fields = (
+                'address_title',
+                'company',
+                'address_first_name',
+                'address_last_name',
+                'address',
+                'address_2',
+                'zip_code',
+                'city',
+                'phone',
+                'entrance_code',
+                'intercom',
+                'stairs',
+                'floor',
+                'apartment_number',
+                'comment',
+            )
+
+    def get_initial(self):
+        user = get_current_user()
+        return {
+            'address_first_name': user.first_name,
+            'address_last_name': user.last_name,
+        }
+
+    def get_success_url(self):
+        return reverse('my-addresses')
+
+
 def index(request):
     context = {
         'num': 3,
     }
     return render(request, 'index.html', context=context)
+
+
+def my_addresses(request):
+    user = get_current_user()
+    addresses = ShippingAddress.objects.filter(user=user)
+    context = {
+        'user': get_current_user(),
+        'addresses': addresses,
+    }
+    return render(request, 'my-addresses.html', context=context)

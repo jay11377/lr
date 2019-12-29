@@ -8,6 +8,9 @@ from django.core.files.base import ContentFile
 from io import BytesIO
 import os
 from PIL import Image
+from django_currentuser.middleware import(
+    get_current_user,
+)
 
 QUANTITY_CHOICES = (
     (1, 1),
@@ -333,25 +336,32 @@ class DeliveryCity(models.Model):
 
 
 class ShippingAddress(models.Model):
+    user = models.ForeignKey(
+        get_user_model(),
+        default=1,
+        on_delete=models.CASCADE,
+        verbose_name=_('user'),
+        editable=False,
+    )
     address_title = models.CharField(
         max_length=200,
         verbose_name=_('address title'),
         help_text=_('(Home, Office)'),
     )
-    company = models.CharField(max_length=200, verbose_name=_('company'))
+    company = models.CharField(max_length=200, blank=True, verbose_name=_('company'))
     address_first_name = models.CharField(max_length=200, verbose_name=_('first name'))
     address_last_name = models.CharField(max_length=200, verbose_name=_('last name'))
     address = models.CharField(max_length=200, verbose_name=_('address'))
-    address_2 = models.CharField(max_length=200, verbose_name=_('address (2)'))
+    address_2 = models.CharField(max_length=200, blank=True, verbose_name=_('address (2)'))
     zip_code = models.CharField(max_length=200, verbose_name=_('zip code'))
     city = models.CharField(max_length=200, verbose_name=_('city'))
     phone = models.CharField(max_length=200, verbose_name=_('phone'))
-    entrance_code = models.CharField(max_length=200, verbose_name=_('entrance code'))
-    intercom = models.CharField(max_length=200, verbose_name=_('intercom'))
-    stairs = models.CharField(max_length=200, verbose_name=_('stairs'))
-    floor = models.CharField(max_length=200, verbose_name=_('floor'))
-    apartment_number = models.CharField(max_length=200, verbose_name=_('apartment number'))
-    comment = models.CharField(max_length=200, verbose_name=_('comment'))
+    entrance_code = models.CharField(max_length=200, blank=True, verbose_name=_('entrance code'))
+    intercom = models.CharField(max_length=200, blank=True, verbose_name=_('intercom'))
+    stairs = models.CharField(max_length=200, blank=True, verbose_name=_('stairs'))
+    floor = models.CharField(max_length=200, blank=True, verbose_name=_('floor'))
+    apartment_number = models.CharField(max_length=200, blank=True, verbose_name=_('apartment number'))
+    comment = models.CharField(max_length=200, blank=True, verbose_name=_('comment'))
 
     class Meta:
         verbose_name = _('shipping address')
@@ -359,4 +369,9 @@ class ShippingAddress(models.Model):
 
     def __str__(self):
         return self.address_title
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        self.user = get_current_user()
+        super(ShippingAddress, self).save()
 

@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.facebook',
 ] + COMMON + APPS
 
 if DEBUG:
@@ -74,6 +76,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_currentuser.middleware.ThreadLocalUserMiddleware',
 ]
 
 
@@ -91,6 +94,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -172,3 +176,14 @@ SITE_ID = 1
 ACCOUNT_FORMS = {
     'signup': 'products.forms.CustomSignupForm',
 }
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Allauth setup
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS=1
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400
+ACCOUNT_LOGOUT_REDIRECT_URL ='/accounts/login/'
+LOGIN_REDIRECT_URL = '/accounts/add-address/'

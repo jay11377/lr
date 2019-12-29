@@ -1,0 +1,16 @@
+{% extends "base-page.html" %}
+
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block title %}{% trans "Add address" %}{% endblock %}
+{% block h1title %}{% trans "Add address" %}{% endblock %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-success">{% trans "Validate" %}</button>
+    </form>
+{% endblock %}

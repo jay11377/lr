@@ -1,0 +1,23 @@
+{% extends "base-page.html" %}
+
+{% block content %}
+    <h1>My addresses</h1>
+    <p>User : {{ user }}</p>
+    <p>Addresses :</p>
+    {% for address in addresses %}
+        <p>{{ address.address_title }}</p>
+        <p>{{ address.company }}</p>
+        <p>{{ address.address_first_name }}</p>
+        <p>{{ address.address_last_name }}</p>
+        <p>{{ address.address }}</p>
+        <p>{{ address.address_2 }}</p>
+        <p>{{ address.zip_code }}</p>
+        <p>{{ address.city }}</p>
+        <p>{{ address.phone }}</p>
+    {% endfor %}
+    {% if user.is_authenticated %}
+        <p>Here are my addresses</p>
+    {% else %}
+        <p>Welcome, new user. Please log in.</p>
+    {% endif %}
+{% endblock %}

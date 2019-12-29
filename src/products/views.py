@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import CreateView
 from django_currentuser.middleware import get_current_user
@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from .models import Category, Product, ShippingAddress
 from . import serializers
 
+import requests
 
 
 # Create your views here.
@@ -67,8 +68,11 @@ class ShippingAddressCreateView(CreateView):
 
 
 def index(request):
+    endpoint = request.build_absolute_uri('/api/categories/')
+    response = requests.get(endpoint)
+    categories = response.json()
     context = {
-        'num': 3,
+        'categories': categories,
     }
     return render(request, 'index.html', context=context)
 

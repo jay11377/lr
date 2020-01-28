@@ -1,2 +1,2 @@
 -r base.txt
-django-s3-storage==0.12.4
+django-s3-storage==0.13.0

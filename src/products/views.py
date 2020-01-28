@@ -1,10 +1,10 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.sites.models import Site
 from django.views.generic import CreateView
-from django_currentuser.middleware import get_current_user
 from rest_framework import viewsets
-from rest_framework.decorators import list_route, detail_route
+from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
@@ -39,7 +39,7 @@ class CategoriesViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.CategorySerializer
     queryset = Category.objects.all()
 
-    @list_route()
+    @action(detail=False)
     def site(self, request):
         url_home = request.get_host()
         site_id = get_site_id(url_home)
@@ -48,7 +48,7 @@ class CategoriesViewSet(viewsets.ModelViewSet):
         categories_json = serializers.CategorySerializer(categories, many=True)
         return Response(categories_json.data)
 
-    @detail_route()
+    @action(detail=True)
     def products(self, request, pk=None):
         category = self.get_object()  # retrieve an object by pk provided
         products = Product.objects.filter(categories=category).distinct()
@@ -82,11 +82,20 @@ class ShippingAddressCreateView(CreateView):
             )
 
     def get_initial(self):
-        user = get_current_user()
+        user = self.request.user
         return {
             'address_first_name': user.first_name,
             'address_last_name': user.last_name,
         }
+
+    def form_valid(self, form):
+        user = self.request.user
+        self.object = form.save()
+        # do something with self.object
+        self.object.user = user
+        self.object.save()
+        # remember the import: from django.http import HttpResponseRedirect
+        return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
         return reverse('my-addresses')
@@ -108,10 +117,10 @@ def index(request):
 
 
 def my_addresses(request):
-    user = get_current_user()
+    user = request.user
     addresses = ShippingAddress.objects.filter(user=user)
     context = {
-        'user': get_current_user(),
+        'user': user,
         'addresses': addresses,
     }
     return render(request, 'my-addresses.html', context=context)

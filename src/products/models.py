@@ -9,9 +9,6 @@ from django.core.files.base import ContentFile
 from io import BytesIO
 import os
 from PIL import Image
-from django_currentuser.middleware import(
-    get_current_user,
-)
 
 QUANTITY_CHOICES = (
     (1, 1),
@@ -371,8 +368,4 @@ class ShippingAddress(models.Model):
     def __str__(self):
         return self.address_title
 
-    def save(self, force_insert=False, force_update=False, using=None,
-             update_fields=None):
-        self.user = get_current_user()
-        super(ShippingAddress, self).save()
 

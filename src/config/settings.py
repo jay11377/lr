@@ -55,9 +55,19 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'django_simple_bulma',
     # 'allauth.socialaccount.providers.google',
     # 'allauth.socialaccount.providers.facebook',
 ] + COMMON + APPS
+
+STATICFILES_FINDERS = [
+  # First add the two default Finders, since this will overwrite the default.
+  'django.contrib.staticfiles.finders.FileSystemFinder',
+  'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+
+  # Now add our custom SimpleBulma one.
+  'django_simple_bulma.finders.SimpleBulmaFinder',
+]
 
 if DEBUG:
     INSTALLED_APPS += LOCAL

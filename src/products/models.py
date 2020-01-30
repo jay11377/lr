@@ -9,6 +9,7 @@ from django.core.files.base import ContentFile
 from io import BytesIO
 import os
 from PIL import Image
+from autoslug import AutoSlugField
 
 QUANTITY_CHOICES = (
     (1, 1),
@@ -46,6 +47,11 @@ class Store(models.Model):
 
 class Category(models.Model):
     title = models.CharField(max_length=200, verbose_name=_('title'))
+    slug = AutoSlugField(
+        populate_from='title',
+        unique=True,
+        always_update=True,
+    )
     author = models.ForeignKey(
         get_user_model(),
         default=1,

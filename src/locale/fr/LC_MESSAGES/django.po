@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-29 11:08+0000\n"
+"POT-Creation-Date: 2020-01-31 07:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,7 +50,7 @@ msgstr "Gérer les villes"
 msgid "Store"
 msgstr "Restaurant"
 
-#: config/apps.py:28 products/models.py:264
+#: config/apps.py:29 products/models.py:268
 msgid "Tax rates"
 msgstr "Taux de TVA"
 
@@ -86,23 +86,23 @@ msgstr ""
 msgid "choices"
 msgstr ""
 
-#: products/admin.py:99 products/admin.py:120 products/models.py:78
+#: products/admin.py:99 products/admin.py:120 products/models.py:82
 msgid "category"
 msgstr "catégorie"
 
-#: products/admin.py:141 products/models.py:222
+#: products/admin.py:141 products/models.py:226
 msgid "option"
 msgstr "option"
 
-#: products/admin.py:222 products/models.py:79 products/models.py:96
+#: products/admin.py:222 products/models.py:83 products/models.py:100
 msgid "categories"
 msgstr "catégories"
 
-#: products/admin.py:255 products/models.py:247
+#: products/admin.py:255 products/models.py:251
 msgid "options"
 msgstr "options"
 
-#: products/admin.py:377 products/models.py:368
+#: products/admin.py:377 products/models.py:372
 msgid "shipping addresses"
 msgstr "adresses de livraison"
 
@@ -110,101 +110,97 @@ msgstr "adresses de livraison"
 msgid "products"
 msgstr "carte"
 
-#: products/models.py:32 products/models.py:50 products/models.py:170
+#: products/models.py:31 products/models.py:49 products/models.py:174
 msgid "title"
 msgstr "titre"
 
-#: products/models.py:33
-msgid "domain"
-msgstr "domaine"
-
-#: products/models.py:38
+#: products/models.py:37
 msgid "owner"
 msgstr "gérant"
 
-#: products/models.py:42 products/models.py:63 products/models.py:185
-#: products/models.py:216 products/models.py:259 products/models.py:284
-#: products/models.py:318
+#: products/models.py:41 products/models.py:67 products/models.py:189
+#: products/models.py:220 products/models.py:263 products/models.py:288
+#: products/models.py:322
 msgid "store"
 msgstr "restaurant"
 
-#: products/models.py:43
+#: products/models.py:42
 msgid "stores"
 msgstr "restaurants"
 
-#: products/models.py:55 products/models.py:91 products/models.py:177
-#: products/models.py:208 products/models.py:276 products/models.py:310
+#: products/models.py:59 products/models.py:95 products/models.py:181
+#: products/models.py:212 products/models.py:280 products/models.py:314
 msgid "author"
 msgstr "auteur"
 
-#: products/models.py:67
+#: products/models.py:71
 msgid "Include menus"
 msgstr "Inclus des menus"
 
-#: products/models.py:68
+#: products/models.py:72
 msgid "This category will include menus"
 msgstr "Cette catégorie incluera des menus"
 
-#: products/models.py:72 products/models.py:98
+#: products/models.py:76 products/models.py:102
 msgid "description"
 msgstr "description"
 
-#: products/models.py:73
+#: products/models.py:77
 msgid "This field is not mandatory, but is useful for SEO purposes"
 msgstr ""
 "Ce champs n'est pas obligatoire, mais il est utile pour les moteurs de "
 "recherche"
 
-#: products/models.py:86 products/models.py:252 products/models.py:271
-#: products/models.py:305
+#: products/models.py:90 products/models.py:256 products/models.py:275
+#: products/models.py:309
 msgid "name"
 msgstr "nom"
 
-#: products/models.py:99
+#: products/models.py:103
 msgid "photo"
 msgstr "photo"
 
-#: products/models.py:101
+#: products/models.py:105
 msgid "spicy"
 msgstr "épicé"
 
-#: products/models.py:102
+#: products/models.py:106
 msgid "vegetarian"
 msgstr "végétarien"
 
-#: products/models.py:108 products/models.py:253
+#: products/models.py:112 products/models.py:257
 msgid "tax rate"
 msgstr "taux de TVA"
 
-#: products/models.py:110
+#: products/models.py:114
 msgid "price"
 msgstr "prix"
 
-#: products/models.py:111
+#: products/models.py:115
 msgid "price including taxes"
 msgstr "prix TTC"
 
-#: products/models.py:114
+#: products/models.py:118
 msgid "dish"
 msgstr "plat"
 
-#: products/models.py:115
+#: products/models.py:119
 msgid "dishes"
 msgstr "plats"
 
-#: products/models.py:119
+#: products/models.py:123
 msgid "Photo"
 msgstr "photo"
 
-#: products/models.py:171
+#: products/models.py:175
 msgid "Title visible by the client on the website"
 msgstr "Titre visible par le client sur le site. Ex: Dessert"
 
-#: products/models.py:190
+#: products/models.py:194
 msgid "Administration title"
 msgstr "Titre pour l'administrateur"
 
-#: products/models.py:191
+#: products/models.py:195
 msgid ""
 "This title is only visible by the administrator, so that he can tell apart "
 "options that could have the same name on the website. E.g: \"Desert for $15 "
@@ -214,129 +210,129 @@ msgstr ""
 "options pouvant avoir le même nom sur le site. Ex: \"Dessert du menu à 15€\" "
 "et \"Desert du menu à 25€ \""
 
-#: products/models.py:196
+#: products/models.py:200
 msgid "menu option"
 msgstr "option du menu"
 
-#: products/models.py:197
+#: products/models.py:201
 msgid "menu options"
 msgstr "options du menu"
 
-#: products/models.py:228
+#: products/models.py:232
 msgid "product"
 msgstr "plat"
 
-#: products/models.py:232
+#: products/models.py:236
 msgid "quantity"
 msgstr "quantité"
 
-#: products/models.py:237
+#: products/models.py:241
 msgid "option product"
 msgstr "plat à l'option"
 
-#: products/models.py:238
+#: products/models.py:242
 msgid "option products"
 msgstr "plats pour cette option"
 
-#: products/models.py:263
+#: products/models.py:267
 msgid "Tax rate"
 msgstr "taux de TVA"
 
-#: products/models.py:290
+#: products/models.py:294
 msgid "minimum"
 msgstr "minimum"
 
-#: products/models.py:293
+#: products/models.py:297
 msgid "delivery duration"
 msgstr "durée de livraison"
 
-#: products/models.py:297 products/models.py:324
+#: products/models.py:301 products/models.py:328
 msgid "delivery area"
 msgstr "zone de livraison"
 
-#: products/models.py:298
+#: products/models.py:302
 msgid "delivery areas"
 msgstr "zone de livraison"
 
-#: products/models.py:327 products/models.py:356
+#: products/models.py:331 products/models.py:360
 msgid "zip code"
 msgstr "code postal"
 
-#: products/models.py:331
+#: products/models.py:335
 msgid "delivery city"
 msgstr "ville de livraison"
 
-#: products/models.py:332
+#: products/models.py:336
 msgid "delivery cities"
 msgstr "villes de livraison"
 
-#: products/models.py:343
+#: products/models.py:347
 msgid "user"
 msgstr ""
 
-#: products/models.py:348
+#: products/models.py:352
 msgid "address title"
 msgstr "titre de l'adresse"
 
-#: products/models.py:349
+#: products/models.py:353
 msgid "(Home, Office)"
 msgstr "(Maison, Bureau)"
 
-#: products/models.py:351
+#: products/models.py:355
 msgid "company"
 msgstr "société"
 
-#: products/models.py:352
+#: products/models.py:356
 msgid "first name"
 msgstr "prénom"
 
-#: products/models.py:353
+#: products/models.py:357
 #, fuzzy
 #| msgid "name"
 msgid "last name"
 msgstr "nom"
 
-#: products/models.py:354
+#: products/models.py:358
 msgid "address"
 msgstr "adresse"
 
-#: products/models.py:355
+#: products/models.py:359
 msgid "address (2)"
 msgstr "adresse (2)"
 
-#: products/models.py:357
+#: products/models.py:361
 msgid "city"
 msgstr "ville"
 
-#: products/models.py:358
+#: products/models.py:362
 msgid "phone"
 msgstr "téléphone"
 
-#: products/models.py:359
+#: products/models.py:363
 msgid "entrance code"
 msgstr "code d'entrée"
 
-#: products/models.py:360
+#: products/models.py:364
 msgid "intercom"
 msgstr "interphone"
 
-#: products/models.py:361
+#: products/models.py:365
 msgid "stairs"
 msgstr "escalier"
 
-#: products/models.py:362
+#: products/models.py:366
 msgid "floor"
 msgstr "étage"
 
-#: products/models.py:363
+#: products/models.py:367
 msgid "apartment number"
 msgstr "Numéro d'appartement"
 
-#: products/models.py:364
+#: products/models.py:368
 msgid "comment"
 msgstr "Remarque"
 
-#: products/models.py:367
+#: products/models.py:371
 msgid "shipping address"
 msgstr "adresse de livraison"
 
@@ -397,8 +393,9 @@ msgid ""
 "You currently do not have any e-mail address set up. You should really add "
 "an e-mail address so you can receive notifications, reset your password, etc."
 msgstr ""
-"Vous n'avez aucune adresse email configurée. Vous devez ajouter "
-"une adresse email afin de recevoir les notifications, mettre à jour votre mot de passe, etc."
+"Vous n'avez aucune adresse email configurée. Vous devez ajouter une adresse "
+"email afin de recevoir les notifications, mettre à jour votre mot de passe, "
+"etc."
 
 #: products/templates/account/email.html:48
 msgid "Add E-mail Address"
@@ -704,16 +701,18 @@ msgid ""
 "mail address</a>."
 msgstr ""
 
+#: products/templates/base-page.html:24
+msgid "My cart"
+msgstr "Mon panier"
+
 #: products/templates/openid/login.html:9
 msgid "OpenID Sign In"
 msgstr ""
 
 #: products/templates/products/shippingaddress_form.html:6
 #: products/templates/products/shippingaddress_form.html:7
-#, fuzzy
-#| msgid "address"
 msgid "Add address"
-msgstr "adresse"
+msgstr "Ajouter une adresse"
 
 #: products/templates/products/shippingaddress_form.html:14
 msgid "Validate"
@@ -780,6 +779,9 @@ msgid ""
 "You are about to use your %(provider_name)s account to login to\n"
 "%(site_name)s. As a final step, please complete the following form:"
 msgstr ""
+
+#~ msgid "domain"
+#~ msgstr "domaine"
 
 #, fuzzy
 #~| msgid "first name"

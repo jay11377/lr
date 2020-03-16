@@ -6,7 +6,7 @@
     <h2>Categories</h2>
     <p>store : {{ store }}</p>
     {% for category in categories %}
-        <p>{{ category.title }}</p>
+        <p><a href="{{ category.slug }}/">{{ category.title }}</a></p>
     {% endfor %}
     {% if user.is_authenticated %}
         <p>Welcome, {{ user.get_full_name }}. Thanks for logging in.</p>

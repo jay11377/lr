@@ -130,3 +130,16 @@ def my_addresses(request):
         'addresses': addresses,
     }
     return render(request, 'my-addresses.html', context=context)
+
+
+def category_products(request, slug):
+    category = Category.objects.get(slug=slug)
+    endpoint = request.build_absolute_uri('/api/categories/' + str(category.id) + '/products')
+    response = requests.get(endpoint)
+    products = response.json()
+
+    context = {
+        'category': category.title,
+        'products': products,
+    }
+    return render(request, 'category.html', context=context)

@@ -8,6 +8,7 @@ from .views import(
     my_addresses,
     CategoriesViewSet,
     ProductViewSet,
+    category_products,
 )
 
 __app_name__ = 'products'
@@ -23,4 +24,5 @@ urlpatterns = [
     path('', index, name='index'),
     path('accounts/add-address/', ShippingAddressCreateView.as_view(), name='add-address'),
     path('accounts/my-addresses/', my_addresses, name='my-addresses'),
+    path('<slug:slug>/', category_products, name='category'),
 ]

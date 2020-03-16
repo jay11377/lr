@@ -1,0 +1,32 @@
+{% extends "base-page.html" %}
+
+{% load i18n %}
+
+{% block title %}{{ category }}{% endblock %}
+
+{% block content %}
+    <h1 class="title has-text-centered-mobile">{{ category }}</h1>
+    <div class="columns is-multiline is-mobile is-variable is-4">
+        {% for i in '012345'|make_list %}
+            {% for product in products %}
+                <div class="column is-10-mobile is-offset-1-mobile is-one-third-desktop">
+                    <div class="product has-text-centered">
+                        <a href=""><img alt="{{ product.title }}" src="{{ product.photo }}"></a>
+                        <div class="name">
+                            <a href="">{{ product.title }}</a>
+                        </div>
+                        <div class="price">
+                            {{ product.price }} €
+                        </div>
+                        <div class="quantity" data-quantite="1">
+                            <i class="fad fa-minus-square fa-3x"></i>
+                            <div class="is-inline-block quantity-number">1</div>
+                            <i class="fad fa-plus-square fa-3x"></i>
+                            <i class="fal fa-cart-plus fa-2x fa-lg importantButton bouton_ajouter" data-id="45"></i>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endblock %}

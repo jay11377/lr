@@ -17,8 +17,12 @@ import re
 
 def get_site_id(host):
     domain = get_domain(host)
-    site = Site.objects.get(domain=domain)
-    return site.id
+    try:
+        site = Site.objects.get(domain=domain)
+        site_id = site.id
+    except Site.DoesNotExist:
+        site_id = None
+    return site_id
 
 
 def get_domain(host):
@@ -43,10 +47,12 @@ class CategoriesViewSet(viewsets.ModelViewSet):
     def site(self, request):
         url_home = request.get_host()
         site_id = get_site_id(url_home)
-        store = Store.objects.get(site_id=site_id)
-        categories = Category.objects.filter(store=store)
-        categories_json = serializers.CategorySerializer(categories, many=True)
-        return Response(categories_json.data)
+        if site_id != None:
+            store = Store.objects.get(site_id=site_id)
+            categories = Category.objects.filter(store=store)
+            categories_json = serializers.CategorySerializer(categories, many=True)
+            return Response(categories_json.data)
+        return Response("")
 
     @action(detail=True)
     def products(self, request, pk=None):

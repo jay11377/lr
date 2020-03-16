@@ -10,6 +10,7 @@ from io import BytesIO
 import os
 from PIL import Image
 from autoslug import AutoSlugField
+from django.utils import timezone
 
 QUANTITY_CHOICES = (
     (1, 1),
@@ -88,6 +89,11 @@ class Category(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=200, verbose_name=_('name'))
+    slug = AutoSlugField(
+        populate_from='title',
+        unique=True,
+        always_update=True,
+    )
     author = models.ForeignKey(
         get_user_model(),
         default=1,

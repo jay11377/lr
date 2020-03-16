@@ -192,9 +192,9 @@ class ProductAdmin(FilterUserProductsAdmin):
 
     def changelist_view(self, request, extra_context=None):
         if request.user.is_superuser:
-            self.list_display = ('thumbnail_tag', 'title')
+            self.list_display = ('thumbnail_tag', 'title', 'price_with_taxes')
         else:
-            self.list_display = ('thumbnail_tag', 'title', 'get_categories')
+            self.list_display = ('thumbnail_tag', 'title', 'get_categories', 'price_with_taxes')
         self.list_display_links = ('title',)
         return super(ProductAdmin, self).changelist_view(request, extra_context)
 

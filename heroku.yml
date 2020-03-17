@@ -5,7 +5,7 @@ build:
  docker:
    web: ./Dockerfile
  config:
-   REQUIREMENTS_FILENAME: dev
+   REQUIREMENTS_FILENAME: heroku
 release:
  image: web
  command:

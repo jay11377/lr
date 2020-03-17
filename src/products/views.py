@@ -21,7 +21,7 @@ def get_site_id(host):
         site = Site.objects.get(domain=domain)
         site_id = site.id
     except Site.DoesNotExist:
-        site_id = None
+        site_id = 1
     return site_id
 
 
@@ -108,15 +108,16 @@ class ShippingAddressCreateView(CreateView):
 
 
 def index(request):
-    endpoint = request.build_absolute_uri('/api/categories/site/')
-    response = requests.get(endpoint)
-    categories = response.json()
+    # endpoint = request.build_absolute_uri('/api/categories/site/')
+    # response = requests.get(endpoint)
+    # categories = response.json()
+    categories = ''
 
     url_home = request.get_host()
     site_id = get_site_id(url_home)
-    store = Store.objects.get(site_id=site_id)
+    # store = Store.objects.get(site_id=site_id)
     context = {
-        'store': store.title,
+        'store': '',
         'categories': categories,
     }
     return render(request, 'index.html', context=context)
@@ -133,13 +134,13 @@ def my_addresses(request):
 
 
 def category_products(request, slug):
-    category = Category.objects.get(slug=slug)
-    endpoint = request.build_absolute_uri('/api/categories/' + str(category.id) + '/products')
-    response = requests.get(endpoint)
-    products = response.json()
+    # category = Category.objects.get(slug=slug)
+    # endpoint = request.build_absolute_uri('/api/categories/' + str(category.id) + '/products')
+    # response = requests.get(endpoint)
+    # products = response.json()
 
     context = {
-        'category': category.title,
-        'products': products,
+        'category': '',
+        'products': '',
     }
     return render(request, 'category.html', context=context)

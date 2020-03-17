@@ -5,7 +5,7 @@ from django.contrib.auth.models import Group, Permission
 
 
 def create_permissions(apps, schema_editor):
-    group = Group.objects.get_or_create(name="Restaurant")
+    group, created = Group.objects.get_or_create(name="Restaurant")
 
     group.permissions.add(
         # Category

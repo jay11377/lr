@@ -104,7 +104,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
-                'products.context_processors.categories'
+                'products.context_processors.global_variables'
             ],
         },
     },
@@ -181,7 +181,6 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = 1
 
 ACCOUNT_FORMS = {
     'signup': 'products.forms.CustomSignupForm',

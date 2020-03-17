@@ -1,5 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 from django.contrib.sites.models import Site
 from django.views.generic import CreateView
@@ -13,16 +14,6 @@ from . import serializers
 
 import requests
 import re
-
-
-def get_site_id(host):
-    domain = get_domain(host)
-    try:
-        site = Site.objects.get(domain=domain)
-        site_id = site.id
-    except Site.DoesNotExist:
-        site_id = 1
-    return site_id
 
 
 def get_domain(host):
@@ -45,14 +36,13 @@ class CategoriesViewSet(viewsets.ModelViewSet):
 
     @action(detail=False)
     def site(self, request):
-        url_home = request.get_host()
-        site_id = get_site_id(url_home)
-        if site_id != None:
-            store = Store.objects.get(site_id=site_id)
+        if get_current_site(request).id != 1:
+            store = Store.objects.get(site_id=get_current_site(request).id)
             categories = Category.objects.filter(store=store)
             categories_json = serializers.CategorySerializer(categories, many=True)
             return Response(categories_json.data)
-        return Response("")
+        else:
+            return Response('')
 
     @action(detail=True)
     def products(self, request, pk=None):
@@ -108,20 +98,10 @@ class ShippingAddressCreateView(CreateView):
 
 
 def index(request):
-    # endpoint = request.build_absolute_uri('/api/categories/site/')
-    # response = requests.get(endpoint)
-    # categories = response.json()
-    categories = ''
-
-    url_home = request.get_host()
-    site_id = get_site_id(url_home)
-    # store = Store.objects.get(site_id=site_id)
-    context = {
-        'store': '',
-        'categories': categories,
-    }
-    # return render(request, 'index.html', context=context)
-    return render(request, 'index-platform.html')
+    if get_current_site(request).id == 1:
+        return render(request, 'platform/index-platform.html')
+    else:
+        return render(request, 'index.html')
 
 
 def my_addresses(request):
@@ -135,13 +115,12 @@ def my_addresses(request):
 
 
 def category_products(request, slug):
-    # category = Category.objects.get(slug=slug)
-    # endpoint = request.build_absolute_uri('/api/categories/' + str(category.id) + '/products')
-    # response = requests.get(endpoint)
-    # products = response.json()
-
+    category = Category.objects.get(slug=slug)
+    endpoint = request.build_absolute_uri('/api/categories/' + str(category.id) + '/products')
+    response = requests.get(endpoint)
+    products = response.json()
     context = {
-        'category': '',
-        'products': '',
+        'category': category.title,
+        'products': products,
     }
     return render(request, 'category.html', context=context)

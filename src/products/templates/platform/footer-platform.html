@@ -1,0 +1,46 @@
+{% load i18n %}
+
+<div class="is-hidden-tablet">
+    <div class="container">
+        <nav class="navbar is-fixed-bottom has-background-primary cart-bottom-wrapper">
+            <div class="columns is-multiline">
+                <div class="column is-full has-text-centered">
+                    <span class="fa-stack fa-2x">
+                        <i class="fal fa-shopping-cart fa-stack-2x cart-bottom"></i>
+                        <i class="fas fa-circle fa-stack-1x circle-cart"></i>
+                        <i class="fas fa-stack-1x fa-inverse circle-cart-number">5</i>
+                    </span>
+                    <div class="total-bottom is-inline-block">{% trans "Total:" %} 36,50 €</div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<footer class="footer has-background-light">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-one-quarter">
+                <a class="navbar-item" href="{% url 'index' %}">Link 1</a>
+                <a class="navbar-item" href="{% url 'index' %}">Link 2</a>
+                <a class="navbar-item" href="{% url 'index' %}">Link 3</a>
+            </div>
+            <div class="column is-one-quarter">
+                <a class="navbar-item" href="{% url 'index' %}">Link 4</a>
+                <a class="navbar-item" href="{% url 'index' %}">Link 5</a>
+                <a class="navbar-item" href="{% url 'index' %}">Link 6</a>
+            </div>
+            <div class="column is-one-quarter">
+                <a class="navbar-item" href="{% url 'index' %}">Link 1</a>
+                <a class="navbar-item" href="{% url 'index' %}">Link 2</a>
+                <a class="navbar-item" href="{% url 'index' %}">Link 3</a>
+            </div>
+            <div class="column is-one-quarter">
+                <a class="navbar-item" href="{% url 'index' %}">Link 4</a>
+                <a class="navbar-item" href="{% url 'index' %}">Link 5</a>
+                <a class="navbar-item" href="{% url 'index' %}">Link 6</a>
+            </div>
+        </div>
+    </div>
+</footer>
+

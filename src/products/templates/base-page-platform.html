@@ -1,0 +1,38 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="fr" class="has-navbar-fixed-top has-navbar-fixed-bottom">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+
+        <title>{% block title %}{% endblock %}</title>
+        {% load django_simple_bulma %}
+        {% bulma %}
+        {% font_awesome %}
+        <script src="https://kit.fontawesome.com/d45dd8d262.js" crossorigin="anonymous"></script>
+        <script type="module" src="{% static 'products/sticky-sidebar.js' %}"></script>
+        <script type="module" src="{% static 'products/sidebar.js' %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'products/styles.css' %}">
+    </head>
+    <body>
+        {% include "header-platform.html" %}
+        <div class="container">
+            <section class="columns is-fullheight-with-navbar">
+                <div class="column is-three-quarter main-content">
+                    {% block content %}{% endblock %}
+                </div>
+                <aside class="column is-one-quarter has-background-light is-hidden-mobile">
+                    <div class="sidebar">
+                        <div class="sidebar__inner">
+                            test
+                        </div>
+                    </div>
+                </aside>
+            </section>
+        </div>
+        {% include "footer.html" %}
+    </body>
+</html>
+
+

@@ -120,7 +120,8 @@ def index(request):
         'store': '',
         'categories': categories,
     }
-    return render(request, 'index.html', context=context)
+    # return render(request, 'index.html', context=context)
+    return render(request, 'index-platform.html')
 
 
 def my_addresses(request):

@@ -1,0 +1,33 @@
+{% load i18n %}
+<div class="has-background-light">
+    <nav class="navbar is-primary is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="{% url 'index' %}">
+                    <img src="path/to/your/logo.png" width="112" height="28" />
+                </a>
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarHeader">
+                    <span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span>
+                  </a>
+            </div>
+            <div id="navbarHeader" class="navbar-menu">
+                <div class="navbar-start">
+                    <div class="columns is-multiline is-mobile is-variable">
+                        <div class="column is-half">
+                            <a class="navbar-item nav-item-link" href="{% url 'index' %}">{% trans "Home" %}</a>
+                        </div>
+                        <div class="column is-half">
+                            <a class="navbar-item nav-item-link" href="{% url 'index' %}">111</a>
+                        </div>
+                        <div class="column is-half">
+                            <a class="navbar-item nav-item-link" href="{% url 'index' %}">222</a>
+                        </div>
+                        <div class="column is-half">
+                            <a class="navbar-item nav-item-link" href="{% url 'index' %}">333</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>

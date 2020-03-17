@@ -4,11 +4,10 @@ import requests
 
 
 def global_variables(request):
-    store_title = Store.objects.get(site_id=get_current_site(request).id).title
-
     if get_current_site(request).id == 1:
         return {'store_title': None, 'categories': None}
     else:
+        store_title = Store.objects.get(site_id=get_current_site(request).id).title
         endpoint = request.build_absolute_uri('/api/categories/site/')
         response = requests.get(endpoint)
         categories = response.json()

@@ -1,4 +1,5 @@
 from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.shortcuts import render
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
@@ -98,7 +99,14 @@ class ShippingAddressCreateView(CreateView):
 
 
 def index(request):
-    if get_current_site(request).id == 1:
+    try:
+        site = get_current_site(request)
+    except Site.DoesNotExist:
+        platform = Site.objects.get(id=1).name
+        response = redirect(platform)
+        return response
+
+    if site.id == 1:
         return render(request, 'platform/index-platform.html')
     else:
         return render(request, 'index.html')

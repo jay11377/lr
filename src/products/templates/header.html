@@ -1,55 +1,43 @@
 {% load i18n %}
-<div class="has-background-light">
-    <nav class="navbar is-primary is-fixed-top" role="navigation" aria-label="main navigation">
+{% load mathfilters %}
+<div class="has-background-light" id="navbar-wrapper">
+    <nav id="navbar-top" class="navbar is-primary is-fixed-top" role="navigation" aria-label="main navigation">
         <div class="container">
             <div class="navbar-brand">
                 <a class="navbar-item" href="{% url 'index' %}">
-                    <img src="path/to/your/logo.png" width="112" height="28" />
+                    <strong>{{ store }}</strong>
+{#                    <img src="path/to/your/logo.png" width="112" height="28" />#}
                 </a>
                 <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarHeader">
                     <span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span>
                   </a>
             </div>
             <div id="navbarHeader" class="navbar-menu">
-                <div class="navbar-start">
-                    <div class="columns is-multiline is-mobile is-variable">
-                        <div class="column is-half">
-                            <a class="navbar-item nav-item-link" href="{% url 'index' %}">{% trans "Home" %}</a>
-                        </div>
-                        <div class="column is-half">
-                            <a class="navbar-item nav-item-link" href="{% url 'index' %}">111</a>
-                        </div>
-                        <div class="column is-half">
-                            <a class="navbar-item nav-item-link" href="{% url 'index' %}">222</a>
-                        </div>
-                        <div class="column is-half">
-                            <a class="navbar-item nav-item-link" href="{% url 'index' %}">333</a>
-                        </div>
-<!--                        {% for i in '01'|make_list %}-->
-<!--                            {% for category in categories %}-->
-<!--                                <div class="column is-half">-->
-<!--                                    <a class="navbar-item nav-item-link" href="/{{ category.slug }}/">{{ category.title }}</a>-->
-<!--                                </div>-->
-<!--                            {% endfor %}-->
-<!--                        {% endfor %}-->
-<!--                        <div class="column is-half">-->
-<!--                            <a class="navbar-item nav-item-link" href="{% url 'index' %}">{% trans "Home" %}</a>-->
-<!--                            {% for i in '01'|make_list %}-->
-<!--                                {% for category in categories %}-->
-<!--                                    <a class="navbar-item nav-item-link" href="/{{ category.slug }}/">{{ category.title }}</a>-->
-<!--                                    <a class="navbar-item nav-item-link" href="/{{ category.slug }}/">Ceci est ma catégorie très longue</a>-->
-<!--                                {% endfor %}-->
-<!--                            {% endfor %}-->
-<!--                        </div>-->
-<!--                        <div class="column is-half">-->
-<!--                            <a class="navbar-item nav-item-link" href="{% url 'index' %}">{% trans "Home" %}</a>-->
-<!--                            {% for i in '01'|make_list %}-->
-<!--                                {% for category in categories %}-->
-<!--                                    <a class="navbar-item nav-item-link" href="/{{ category.slug }}/">{{ category.title }}</a>-->
-<!--                                {% endfor %}-->
-<!--                            {% endfor %}-->
-<!--                        </div>-->
-                    </div>
+                <div class="navbar-start is-hidden-desktop">
+                    {% with nb_categories=categories|length %}
+                        {% with middle=nb_categories|div:2|floatformat:0 %}
+                            {% with categories_slice_left=":"|add:middle categories_slice_right=middle|add:":" %}
+                                {% if nb_categories > 7 %}
+                                    <div class="columns is-multiline is-mobile is-variable">
+                                        <div class="column is-half">
+                                            {% for category in categories|slice:categories_slice_left %}
+                                                <a class="navbar-item nav-item-link" href="/{{ category.slug }}/">{{ category.title }}</a>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="column is-half">
+                                            {% for category in categories|slice:categories_slice_right %}
+                                                <a class="navbar-item nav-item-link" href="/{{ category.slug }}/">{{ category.title }}</a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    {% for category in categories %}
+                                        <a class="navbar-item nav-item-link" href="/{{ category.slug }}/">{{ category.title }}</a>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endwith %}
+                        {% endwith %}
+                    {% endwith %}
                 </div>
                 <div class="navbar-end">
                     <div class="navbar-item">
@@ -60,8 +48,8 @@
                                 #}
                                 <a class="button is-light" href="{% url 'account_logout' %}">{% trans "Log out" %}</a>
                             {% else %}
-                                <a class="button is-primary" href="{% url 'account_signup' %}"> <strong>{% trans "Sign up" %}</strong> </a>
-                                <a class="button is-light" href="{% url 'account_login' %}">{% trans "Log in" %}</a>
+                                <a class="button is-primary is-header" href="{% url 'account_signup' %}">{% trans "Sign up" %}</a>
+                                <a class="button is-primary is-header" href="{% url 'account_login' %}">{% trans "Log in" %}</a>
                             {% endif %}
                         </div>
                     </div>

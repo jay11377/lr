@@ -1,13 +1,7 @@
 {% extends "base-page.html" %}
 
 {% block content %}
-    <h1>Accueil de la bibliothèque locale</h1>
-    <p>Bienvenue à la bibliothèque locale, un site web développé par <em>Mozilla Developer Network</em>!</p>
-    <h2>Categories</h2>
-    <p>store : {{ store }}</p>
-    {% for category in categories %}
-        <p><a href="{{ category.slug }}/">{{ category.title }}</a></p>
-    {% endfor %}
+    <h1>Bienvenue chez {{ store }}</h1>
     {% if user.is_authenticated %}
         <p>Welcome, {{ user.get_full_name }}. Thanks for logging in.</p>
     {% else %}

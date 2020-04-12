@@ -11,4 +11,5 @@ def global_variables(request):
         endpoint = request.build_absolute_uri('/api/categories/site/')
         response = requests.get(endpoint)
         categories = response.json()
-        return {'store': store, 'categories': categories}
+        page = request.path.replace('/', '')
+        return {'store': store, 'categories': categories, 'page': page}

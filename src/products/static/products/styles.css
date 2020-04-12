@@ -1,3 +1,8 @@
+.button.is-primary.is-header {
+    color: white;
+    border-color: white;
+    font-weight: bold;
+}
 .title, .title:not(:last-child), .sidebar h3 {
     font-size: 1.6rem;
     margin-top: 1.3rem;
@@ -6,6 +11,7 @@
 }
 .product {
     border: 1px solid #ccc;
+    background: #ffffff;
 }
 .product:hover {
     border-color: #7af4e2;
@@ -142,8 +148,12 @@
 .navbar-burger:not(.is-active) span:nth-child(3) {
     top: calc(50% + 6px);
 }
-.nav-item-link {
-    border-bottom: 1px solid #ddd;
+
+
+h1 {
+    color: #00d1b2;
+    font-size: 1.3rem;
+    font-weight: bold;
 }
 
 
@@ -151,5 +161,41 @@
 @media screen and (max-width: 1087px) {
     .navbar-menu {
         box-shadow: 0 8px 16px rgba(10, 10, 10, 0.8);
+    }
+    #navbarHeader {
+        padding-bottom: 3rem;
+        margin-bottom: 5rem;
+    }
+}
+
+/* Desktop */
+@media screen and (min-width: 1088px) {
+    .main-content {
+        padding: 1rem 2rem 2rem;
+    }
+    #navbar-top {
+        height: 4.5rem;
+    }
+    html.has-navbar-fixed-top, body.has-navbar-fixed-top {
+        padding-top: 5rem;
+    }
+    #sidebar-menu {
+        background: #ffffff;
+        padding-left: 2rem;
+        box-shadow: 2px 2px 3px #ccc;
+        margin-bottom: 2rem;
+    }
+    .menu-list a {
+        padding: 0.5rem 0 0.5rem 1rem;
+        border-left: 4px solid transparent;
+    }
+    .menu-list a:hover {
+        color: #00d1b2;
+        border-left: 4px solid #00d1b2;
+    }
+    .menu-list a.is-active {
+        border-left: 4px solid #00d1b2;
+        background: whitesmoke;
+        color: #00d1b2;
     }
 }

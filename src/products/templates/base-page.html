@@ -17,12 +17,24 @@
     </head>
     <body>
         {% include "header.html" %}
-        <div class="container">
+        <div id="main-content" class="has-background-light">
             <section class="columns is-fullheight-with-navbar">
-                <div class="column is-three-quarter main-content">
+                <aside class="menu column is-3-desktop is-2-widescreen is-hidden-touch" id="sidebar-menu">
+                    <p class="menu-label">
+                        {% trans "Menu" %}
+                    </p>
+                    <ul class="menu-list">
+                        {% for category in categories %}
+                            <li><a {% if category.slug == page %}class="is-active" {% endif %}href="/{{ category.slug }}/">{{ category.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </aside>
+
+                <div class="column main-content">
                     {% block content %}{% endblock %}
                 </div>
-                <aside class="column is-one-quarter has-background-light is-hidden-mobile">
+
+                <aside class="column is-3-desktop is-2-widescreen is-hidden-touch">
                     <div class="sidebar">
                         <div class="sidebar__inner">
                             <h3>{% trans "My cart" %}</h3>

@@ -10,3 +10,4 @@ django-allauth==0.41.0
 -e git://github.com/jay11377/django-suit@v2#egg=django-suit
 django-autoslug==1.9.6
 django-simple-bulma==1.2.0
+django-mathfilters==1.0.0

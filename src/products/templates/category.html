@@ -5,11 +5,11 @@
 {% block title %}{{ category }}{% endblock %}
 
 {% block content %}
-    <h1 class="title has-text-centered-mobile">{{ category }}</h1>
+    <h1 class="title has-text-centered-touch">{{ category }}</h1>
     <div class="columns is-multiline is-mobile is-variable is-4">
         {% for i in '012345'|make_list %}
             {% for product in products %}
-                <div class="column is-10-mobile is-offset-1-mobile is-one-third-desktop">
+                <div class="column is-10-mobile is-offset-1-mobile is-4-desktop">
                     <div class="product has-text-centered">
                         <a href=""><img alt="{{ product.title }}" src="{{ product.photo }}"></a>
                         <div class="name">
